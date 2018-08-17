@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<styleUrl>#1</styleUrl>
+<name>ad7ba4c7116f60ef</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.28999791096209,23.545638965397544,0.0 87.2904403358558,23.545797495228626,0.0 87.29071993940539,23.545618377093774,0.0 87.29075250367418,23.545156168825415,0.0 87.28984968739366,23.544864842957352,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#2</styleUrl>
+<name>e41985275bf3e243</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.28893154822083,23.54651728456841,0.0 87.29030489139114,23.546075271672393,0.0 87.29024396036465,23.545865381381304,0.0 87.28965126765246,23.545670724763497,0.0 87.28911396678257,23.545928009970993,0.0 87.28878795217571,23.546184723183416,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#3</styleUrl>
+<name>e753f3d9e6c930e7</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.28826941827896,23.545457346910567,0.0 87.28897983458774,23.545707906175124,0.0 87.28978186269296,23.545174580473102,0.0 87.28893167422933,23.544862817559064,0.0 87.28839182576667,23.545153244307585,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#4</styleUrl>
+<name>3fbbff16d33ff0b6</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.28952153814953,23.544526611806475,0.0 87.29008785958843,23.54471714689103,0.0 87.2903405231254,23.544013138935398,0.0 87.28979341704144,23.543832576702158,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#5</styleUrl>
+<name>367af1081fb2a66f</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29105931199462,23.54717146959223,0.0 87.29210886641846,23.546666234200515,0.0 87.2916367864998,23.545945616218688,0.0 87.29067725661855,23.546483060730353,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<ExtendedData>
+<Data name="20180807165015"><value>20180807165039-map-367af1081fb2a66f-76ddf479601aa72d7f20562fe235fcee_9126617939_7318831572_50_d6a5b165cb3c73f.png-23.54555833_87.29098641</value></Data>
+<Data name="20180807164733"><value>20180807164818-map-e41985275bf3e243-76ddf479601aa72d7f20562fe235fcee_9126617939_7318831572_50_727669020c366a53.png-23.54555833_87.29098641</value></Data>
+<Data name="20180807164851"><value>20180807164930-map-e753f3d9e6c930e7-76ddf479601aa72d7f20562fe235fcee_9126617939_7318831572_50_6df0de00e944af27.png-23.54555833_87.29098641</value></Data>
+<Data name="source"><value>20180807164712-map-ad7ba4c7116f60ef-76ddf479601aa72d7f20562fe235fcee_9126617939_7318831572_50_273a441fb3698210.png-23.54555833_87.29098641</value></Data>
+<Data name="20180807165039"><value>20180807165052-text-none-Lord&apos;s playground-23.54555833_87.29098641</value></Data>
+<Data name="total"><value>10</value></Data>
+<Data name="20180807164712"><value>20180807164733-text-none-C.V. Raman Hall of Residence-23.54555833_87.29098641</value></Data>
+<Data name="20180807165011"><value>20180807165015-text-none-Hall 9-23.54555833_87.29098641</value></Data>
+<Data name="20180807164818"><value>20180807164851-text-none-International Hall of Residence-23.54555833_87.29098641</value></Data>
+<Data name="20180807164942"><value>20180807165011-map-3fbbff16d33ff0b6-76ddf479601aa72d7f20562fe235fcee_9126617939_7318831572_50_b49acf9609c420b6.png-23.54555833_87.29098641</value></Data>
+<Data name="20180807164930"><value>20180807164942-text-none-Tagore Hall of Residence-23.54555833_87.29098641</value></Data>
+</ExtendedData>
+<Style id='4'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='5'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='1'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='2'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='3'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+</Document>
+</kml>

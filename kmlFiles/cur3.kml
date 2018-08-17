@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<styleUrl>#1</styleUrl>
+<name>c0012b43bcbc0ba0</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29100492152332,23.549295235744893,0.0 87.2920333984062,23.549348405197904,0.0 87.29206872326091,23.54911490745475,0.0 87.29167643145331,23.54897003638375,0.0 87.29173220753972,23.548714381163066,0.0 87.2920705824638,23.54869051998378,0.0 87.29207244166668,23.548034335856045,0.0 87.29097365276482,23.54791332491898,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#2</styleUrl>
+<name>d33a8209e769d102</name>
+<description><![CDATA[Hello]]></description>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29108510120642,23.547063906098657,0.0 87.29193910127589,23.546596663593988,0.0 87.29160157870194,23.546054660208284,0.0 87.29074757863253,23.546490755062067,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<ExtendedData>
+<Data name="20180815170725"><value>20180815170734-text-none-Academic Building-23.547462119299226_87.2925007546558</value></Data>
+<Data name="source"><value>20180815170622-text-none-Hello-23.547462119299226_87.2925007546558</value></Data>
+<Data name="20180816170222"><value>20180816183435-image-none-ec2c6d639326631ce5b1382b01573dc0_7318831572_8100161665_50_68de3d1c49c437e4.jpeg-23.563987128451224_87.29736328125</value></Data>
+<Data name="total"><value>8</value></Data>
+<Data name="20180815170622"><value>20180815170725-map-c0012b43bcbc0ba0-ec2c6d639326631ce5b1382b01573dc0_7318831572_8100161665_50_332aa46b6ce9e297.png-23.547462119299226_87.2925007546558</value></Data>
+<Data name="20180816183435"><value>20180816183451-video-none-ec2c6d639326631ce5b1382b01573dc0_7318831572_8100161665_50_bce48d6e57c2a45f.mp4-23.563987128451224_87.29736328125</value></Data>
+<Data name="20180816183451"><value>20180816183500-audio-none-ec2c6d639326631ce5b1382b01573dc0_7318831572_8100161665_50_1c751940325c220f.3gp-23.563987128451224_87.29736328125</value></Data>
+<Data name="20180815170734"><value>20180816170218-map-d33a8209e769d102-ec2c6d639326631ce5b1382b01573dc0_7318831572_8100161665_50_384ed57c8b6b6ea0.png-23.54868211_87.28948256</value></Data>
+<Data name="20180816170218"><value>20180816170222-text-none-Lords-23.54868211_87.28948256</value></Data>
+</ExtendedData>
+<Style id='1'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='2'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+</Document>
+</kml>

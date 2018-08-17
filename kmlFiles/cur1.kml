@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<styleUrl>#1</styleUrl>
+<name>94f49575eea80e59</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.2899631538163,23.545675777521126,0.0 87.29042993990532,23.545799649727073,0.0 87.29077184024243,23.54558381171698,0.0 87.29080254985354,23.545208440420723,0.0 87.28984031537186,23.544855590425172,0.0 87.28981292403739,23.54531026784359,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#2</styleUrl>
+<name>adbb28eb6f30472</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29010507686934,23.544740862094415,0.0 87.29031377512854,23.544013607527887,0.0 87.28983994154208,23.54381615801833,0.0 87.28955379528537,23.54454389902901,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#3</styleUrl>
+<name>a8494bd0d9ba6561</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.28856291743324,23.545616283467297,0.0 87.28895939130399,23.54569842228352,0.0 87.28970274486875,23.545223175221878,0.0 87.28885987075762,23.544926457827316,0.0 87.28840809023404,23.545122208961388,0.0 87.28823726774755,23.545480741861795,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#4</styleUrl>
+<name>94c3cba7712d45c9</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.2889610047207,23.54652673542232,0.0 87.29028510477076,23.546029535977027,0.0 87.2901878544846,23.545844371565167,0.0 87.28961931435009,23.54569349666646,0.0 87.28906947619373,23.545883804748826,0.0 87.28877024454403,23.546164980150166,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#5</styleUrl>
+<name>16199b0366b0199c</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29110968707431,23.54716317876442,0.0 87.29208822164048,23.546650183870454,0.0 87.29159745812717,23.545942412228328,0.0 87.29066081800721,23.546469126371193,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#6</styleUrl>
+<name>7ed7f9911efbf4b7</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29242243528273,23.547064041948957,0.0 87.29246758720774,23.547163244181746,0.0 87.29252882509405,23.54713946778847,0.0 87.29258646075175,23.547220703781107,0.0 87.29252954553976,23.54727684244591,0.0 87.29261527858063,23.547398366061728,0.0 87.29250577083099,23.54745054192753,0.0 87.29227738953739,23.547115030935302,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<ExtendedData>
+<Data name="20180807170712"><value>20180807170721-text-none-International Hall of Residence-23.54617816_87.29288684</value></Data>
+<Data name="source"><value>20180807165904-map-94f49575eea80e59-6ef9e403111d6dd776249700bc8cb2b7_7318831572_9126617939_50_a31ec834f039bf9b.png-23.54619234_87.29285534</value></Data>
+<Data name="20180807165904"><value>20180807165929-text-none-C.V. Raman Hall of Residence-23.54619234_87.29285534</value></Data>
+<Data name="20180807170632"><value>20180807170644-text-none-Tagore Hall Of Residence-23.54617816_87.29288684</value></Data>
+<Data name="total"><value>12</value></Data>
+<Data name="20180807165929"><value>20180807165959-map-adbb28eb6f30472-6ef9e403111d6dd776249700bc8cb2b7_7318831572_9126617939_50_852c55f90d295bae.png-23.54619234_87.29285534</value></Data>
+<Data name="20180807170739"><value>20180807170744-text-none-Lord&apos;s Playground-23.54617816_87.29288684</value></Data>
+<Data name="20180807165959"><value>20180807170003-text-none-Hall 9-23.54619234_87.29285534</value></Data>
+<Data name="20180807170003"><value>20180807170632-map-a8494bd0d9ba6561-6ef9e403111d6dd776249700bc8cb2b7_7318831572_9126617939_50_f063eddc92240f88.png-23.54617816_87.29288684</value></Data>
+<Data name="20180807170644"><value>20180807170712-map-94c3cba7712d45c9-6ef9e403111d6dd776249700bc8cb2b7_7318831572_9126617939_50_14ff1e78d019c5db.png-23.54617816_87.29288684</value></Data>
+<Data name="20180807170721"><value>20180807170739-map-16199b0366b0199c-6ef9e403111d6dd776249700bc8cb2b7_7318831572_9126617939_50_ab90c7feba65b427.png-23.54617816_87.29288684</value></Data>
+<Data name="20180807170744"><value>20180807170845-map-7ed7f9911efbf4b7-6ef9e403111d6dd776249700bc8cb2b7_7318831572_9126617939_50_c945600c9b7c3676.png-23.54617955_87.29288801</value></Data>
+<Data name="20180807170845"><value>20180807170850-text-none-Maths department-23.54617955_87.29288801</value></Data>
+</ExtendedData>
+<Style id='4'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='5'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='1'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='3'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='6'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='2'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+</Document>
+</kml>
