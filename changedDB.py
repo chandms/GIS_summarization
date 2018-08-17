@@ -55,23 +55,27 @@ def traverse(root):
     if root.childNodes:
         for node in root.childNodes:
             if node.nodeType == Node.ELEMENT_NODE:
-                if(node.tagName=="LineStyle"):
-                    #ss= dom.getElementsByTagName('LineStyle')
-                    y=0
-                    for cn in node.childNodes:
-                        if(y==0):
-                            ds=dom.getElementsByTagName('color')
-                            myDict[node.tagName].append(ds[0].firstChild.nodeValue)
-                        y=y+1
-                elif(node.tagName=="PolyStyle"):
-                    #ss= dom.getElementsByTagName('PolyStyle')
-                    y = 0
-                    for cn in node.childNodes:
-                        if (y == 0):
-                            ds = dom.getElementsByTagName('color')
-                            myDict[node.tagName].append(ds[0].firstChild.nodeValue)
-                        y = y + 1
-                elif(node.tagName=='color'):
+                if(node.tagName=="Style"):
+                    continue
+                    # ln=''
+                    # for elem in node.attributes.values():
+                    #     ln=ln+elem.firstChild.data
+                    # y=0
+                    # for cn in node.childNodes:
+                    #     if(y==1):
+                    #         rt=0
+                    #         for kn in cn.childNodes:
+                    #             if rt==0:
+                    #                 myDict["LineColor"].append(ln+"_"+kn.wholeText)
+                    #             elif(rt==1):
+                    #                 myDict["width"].append(kn.wholeText)
+                    #             rt=rt+1
+                    #     elif(y==4):
+                    #         for kn in cn.childNodes:
+                    #             myDict["PolyColor"].append(kn.wholeText)
+                    #
+                    #     y=y+1
+                elif(node.tagName=='color' or node.tagName=='PolyStyle' or node.tagName=='LineStyle' or node.tagName=='width' ):
                     continue
                 if(node.tagName=="Data"):
                     f="Data"+list(node.attributes.keys())[0]
@@ -81,8 +85,7 @@ def traverse(root):
                         y = 0
                         for cn in node.childNodes:
                             if (y == 0):
-                                ds = dom.getElementsByTagName('value')
-                                myDict[f].append(ds[0].firstChild.nodeValue)
+                                myDict[f].append(cn.firstChild.nodeValue)
                             y = y + 1
                     else:
                         name = dom.getElementsByTagName('value')
@@ -114,7 +117,7 @@ def collect(root):
 
 
 
-kmlfile='C:/Users/Pupul/Desktop/kml/1234.kml'
+kmlfile='C:/Users/Pupul/Desktop/kml/cur1.kml'
 dom = md.parse(kmlfile)
 root = dom.documentElement
 team = dom.documentElement
@@ -129,8 +132,7 @@ for key,v in myDict.items():
     fld.append(key)
     for l in range(0,len(myDict[key])):
         print(myDict[key][l])
-    if(len(myDict[key])==0):
-        myDict[key].apppend("emp")
+
 print("printing field")
 fld.append('long')
 fld.append('lat')
@@ -142,6 +144,8 @@ for key,val in myDict.items():
         s = re.sub('\s+', '', s)
         if(not s):
             myDict[key][e]=""
+    if("" in myDict[key]):
+        myDict[key].remove("")
 
 
 ll=0
@@ -151,37 +155,124 @@ for key,vl in myDict.items():
         ll=fd
 sum=0
 cord= myDict['coordinates']
+nocid=len(cord)
 for j in range(0,len(cord)):
     s= cord[j].split(',0.0')
     sum=sum+len(s)-1
     rl=len(s)-1
+    myDict['nof'].append(rl)
     for k in range(0,rl):
         st=s[k].split(',')
         print(st, len(st))
         o=0
-        for j in range(len(st)):
+        myDict['cid'].append(j)
+        for jk in range(len(st)):
             if(o==0):
-                myDict['long'].append(float(st[j]))
+                myDict['long'].append(float(st[jk]))
             elif(o==1):
-                myDict['lat'].append(float(st[j]))
+                myDict['lat'].append(float(st[jk]))
             o=o+1
 
 print("sum = ",sum)
 ll=sum
-myDict.pop('coordinates', None)
-for k in range(0,ll):
-    dc={}
-    for km, vm in myDict.items():
-        l=len(myDict[km])
-        if(l!=ll and l is not 0):
-            dc[km]=myDict[km][0]
-        elif(l!=ll and l is  0):
-            dc[km]=""
+
+temp = collections.defaultdict(list)
+for key,vg in myDict.items():
+    if("Data" in key and key!='Data' and key!='ExtendedData' and key!='Datanametotal'):
+        f=myDict[key][0]
+        cur_list= f.split('-')
+        if(cur_list[1]=='map'):
+            temp['map'].append(cur_list[2])
         else:
-            dc[km]=myDict[km][k]
-    for r, y in dc.items():
-        print(r,y)
-    MySeriesHelper(**dc)
+            temp['map'].append('')
+        temp['timeStamp'].append(cur_list[0])
+        st=cur_list[3].split('_')
+        latlon=cur_list[4].split('_')
+        temp['posLat'].append(float(latlon[0]))
+        temp['posLong'].append(float(latlon[1]))
+        if(len(st)!=1):
+            temp['source'].append(st[1])
+            temp['destination'].append(st[2])
+            temp['priority'].append(st[3])
+            temp['metadata'].append(st[4])
+            temp['text'].append('')
+        else:
+            temp['source'].append('')
+            temp['destination'].append('')
+            temp['priority'].append('')
+            temp['metadata'].append('')
+            temp['text'].append(st[0])
+noofmap = len(myDict['name'])
+
+for kk,vk in temp.items():
+    l= len(temp[kk])
+    for j in range(l):
+        myDict[kk].append(temp[kk][j])
+
+fld.append('cid')
+fld.append('nof')
+fld.append('map')
+fld.append('posLat')
+fld.append('posLong')
+fld.append('source')
+fld.append('destination')
+fld.append('priority')
+fld.append('metadata')
+fld.append('text')
+fld.append('timeStamp')
+
+rm=[]
+for kk,vv in myDict.items():
+    if("Data" in kk and kk!='Datanametotal'):
+        fld.remove(kk)
+        rm.append(kk)
+    tt=[]
+    fg=0
+    for k in range(len(myDict[kk])):
+        if(myDict[kk][k]!=''):
+            fg=fg+1
+            tt.append(myDict[kk][k])
+    if fg==0:
+     myDict[kk]=tt
+
+tdict= collections.defaultdict(list)
+for kk, vv in myDict.items():
+    if(len(myDict[kk])!=0):
+        tdict[kk]=myDict[kk]
+
+myDict=tdict
+for u in range(len(rm)):
+    myDict.pop(rm[u], None)
+
+
+
+
+cc=0
+p=0
+
+for t, v in myDict.items():
+    print(t,"->",v,"cm")
+myDict.pop('coordinates', None)
+for j in range(nocid):
+    d= myDict['nof'][j]
+
+    for j in range(d):
+        dc = {}
+        for kk,vv in myDict.items():
+            if(kk!='long' and kk!='lat'):
+                if kk=='Datanametotal':
+                    dc[kk]=myDict[kk][0]
+                elif(kk=='styleUrl' or kk=='name' or kk=='nof' or kk=='cid'):
+                    continue
+                else:
+                    dc[kk]=myDict[kk][cc]
+            elif(kk=='long'):
+                dc[kk]=myDict[kk][j]
+            elif(kk=='lat'):
+                dc[kk]=myDict[kk][j]
+        MySeriesHelper(**dc)
+    cc=cc+1
+
 
 
 
