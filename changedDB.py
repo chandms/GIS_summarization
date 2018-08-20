@@ -1,4 +1,6 @@
 import re
+
+import pickle
 import xmltodict
 from influxdb import InfluxDBClient
 import xml.dom.minidom as  md
@@ -11,6 +13,7 @@ from influxdb import SeriesHelper
 import xml.etree.ElementTree as ET
 from influxdb import DataFrameClient
 from ast import literal_eval
+import grafanalib
 
 headList =[]
 fld=[]
@@ -103,7 +106,7 @@ def traverse(root):
 
 
 
-kmlfile='C:/Users/Pupul/Desktop/kml/cur3.kml'
+kmlfile='C:/Users/Pupul/Desktop/kml/cur1.kml'
 dom = md.parse(kmlfile)
 root = dom.documentElement
 
@@ -311,6 +314,22 @@ while jk<nf or cc<md:
         ind = ind + d
     print("ind = ",ind)
     cc=cc+1
+print("Chnadrika Mukherjee")
+
+result= myclient.query('select * from kml_data')
+print(result)
+file = open('C:/Users/Pupul/Desktop/kml/cur1.json', 'w')
+file.write('')
+file.close()
+for e in result:
+    for k in range(len(e)):
+        data = json.dumps(e[k])
+        ac= json.loads(data)
+        file = open('C:/Users/Pupul/Desktop/kml/cur1.json','a')
+        file.write(json.dumps(ac, indent=4, sort_keys=True))
+        file.close()
+MySeriesHelper._json_body_()
+
 
 
 
