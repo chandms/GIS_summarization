@@ -88,13 +88,8 @@ def insertIntoInflux(kmlfile):
     traverse(root,myDict)
     
     
-    for key,v in myDict.items():
-        fld.append(key)
-    
-    
     fld.append('long')
     fld.append('lat')
-    fld.remove('coordinates')
     
     for key,val in myDict.items():
         for e in range(0,len(myDict[key])):
@@ -113,7 +108,6 @@ def insertIntoInflux(kmlfile):
         myDict['nof'].append(rl)
         for k in range(0,rl):
             st=s[k].split(',')
-            print(st, len(st))
             o=0
             myDict['cid'].append(j)
             for jk in range(len(st)):
@@ -163,10 +157,10 @@ def insertIntoInflux(kmlfile):
                 temp['metadata'].append(st[4])
                 temp['text'].append('##')
             else:
-                temp['source'].append('')
-                temp['destination'].append('')
-                temp['priority'].append('')
-                temp['metadata'].append('')
+                temp['source'].append('##')
+                temp['destination'].append('##')
+                temp['priority'].append('##')
+                temp['metadata'].append('##')
                 temp['text'].append(st[0])
     noofmap = len(myDict['name'])
     
@@ -176,7 +170,7 @@ def insertIntoInflux(kmlfile):
             myDict[kk].append(temp[kk][j])
     
     
-    fld.append('nof')
+
     fld.append('map')
     fld.append('posLat')
     fld.append('posLong')
@@ -186,11 +180,11 @@ def insertIntoInflux(kmlfile):
     fld.append('metadata')
     fld.append('text')
     fld.append('timeStamp')
+    fld.append('Datanametotal')
     
     rm=[]
     for kk,vv in myDict.items():
         if("Data" in kk and kk!='Datanametotal'):
-            fld.remove(kk)
             rm.append(kk)
         tt=[]
         fg=0
@@ -294,7 +288,6 @@ def insertIntoInflux(kmlfile):
     print(result)
 
 path_to_watch=sys.argv[1]
-#path_to_watch = "/home/chandrika/Desktop/GIS_summarization/kmlFiles/"
 before = dict()
 print("before ",dict)
 while 1:
