@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<styleUrl>#1</styleUrl>
+<name>83739767f5ca5f79</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29257308035756,23.547521834003007,0.0 87.29235762364243,23.54713719813745,0.0 87.2926222196084,23.54707655724515,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<ExtendedData>
+<Data name="total"><value>1</value></Data>
+<Data name="source"><value>20180714131248-map-83739767f5ca5f79-6348c962856c1a44498acf4b2e7323c6_9674209814_volunteer_50_2301ef866c571c24.png-23.5472032_87.2925617</value></Data>
+</ExtendedData>
+<Style id='1'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+</Document>
+</kml>

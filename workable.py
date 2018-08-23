@@ -6,6 +6,7 @@ from xml.dom.minidom import Node
 from xml.dom import minidom
 import collections
 from influxdb import SeriesHelper
+import sys
 
 
 
@@ -15,8 +16,8 @@ fld=[]
 
 myclient = InfluxDBClient('127.0.0.1', 8086, 'root', 'root', database='gis')
 
-myclient.create_database('gis')
-myclient.create_retention_policy('awesome_policy', '30d', '3', default=True)
+# myclient.create_database('gis')
+# myclient.create_retention_policy('awesome_policy', '30d', '3', default=True)
 
 
 class MySeriesHelper(SeriesHelper):
@@ -147,7 +148,7 @@ def insertIntoInflux(kmlfile):
             if(cur_list[1]=='map'):
                 temp['map'].append(cur_list[2])
             elif(cur_list[1]=='text'):
-                temp['map'].append('')
+                temp['map'].append('##')
             else:
                 temp['map'].append(cur_list[1])
             temp['timeStamp'].append(cur_list[0])
@@ -160,7 +161,7 @@ def insertIntoInflux(kmlfile):
                 temp['destination'].append(st[2])
                 temp['priority'].append(st[3])
                 temp['metadata'].append(st[4])
-                temp['text'].append('')
+                temp['text'].append('##')
             else:
                 temp['source'].append('')
                 temp['destination'].append('')
@@ -209,13 +210,13 @@ def insertIntoInflux(kmlfile):
     for u in range(len(rm)):
         myDict.pop(rm[u], None)
     
-    
+    myDict.pop('coordinates', None)
     
     
     
     for t, v in myDict.items():
         print(t,"->",v,len(myDict[t]))
-    myDict.pop('coordinates', None)
+    
     
     md = int(myDict['Datanametotal'][0])
     nf=len(myDict['nof'])
@@ -226,12 +227,13 @@ def insertIntoInflux(kmlfile):
     d=0
     while jk<nf or cc<md:
         d=0
-        if(cc<md and myDict['map'][cc]!='' and myDict['map'][cc]!='audio' and myDict['map'][cc]!='video' and myDict['map'][cc]!='image'):
+		#print("DEBUG ",cc,md,myDict['map'][cc])
+        if(cc<md and myDict['map'][cc]!='##' and myDict['map'][cc]!='audio' and myDict['map'][cc]!='video' and myDict['map'][cc]!='image'):
             d= freq[myDict['map'][cc]]
         print("d = ", d,"jk = ",jk)
         g=0
         if(cc<md):
-            if(myDict['text'][cc]!='' or myDict['map'][cc]=='audio' or myDict['map'][cc]=='video' or myDict['map'][cc]=='image'):
+            if(myDict['text'][cc]!='##' or myDict['map'][cc]=='audio' or myDict['map'][cc]=='video' or myDict['map'][cc]=='image'):
                 g=g+1
         if(g==1):
             dc={}
@@ -245,7 +247,7 @@ def insertIntoInflux(kmlfile):
                 elif(kk=='styleUrl' or kk=='name' or kk=='nof'):
                     continue
                 else:
-                    if(myDict[kk][cc]!=''):
+                    if(myDict[kk][cc]!='##'):
                         dc[kk]=myDict[kk][cc]
                     else:
                         dc[kk]="........"
@@ -267,7 +269,7 @@ def insertIntoInflux(kmlfile):
                         elif(kk=='styleUrl' or kk=='name' or kk=='nof'):
                             continue
                         else:
-                            if(myDict[kk][cc]!=''):
+                            if(myDict[kk][cc]!='##'):
                                 dc[kk]=myDict[kk][cc]
                             else:
                                 dc[kk]="........"
@@ -291,8 +293,8 @@ def insertIntoInflux(kmlfile):
     result= myclient.query('select * from kml_data')
     print(result)
 
-
-path_to_watch = "/home/chandrika/Desktop/GIS_summarization/kmlFiles/"
+path_to_watch=sys.argv[1]
+#path_to_watch = "/home/chandrika/Desktop/GIS_summarization/kmlFiles/"
 before = dict()
 print("before ",dict)
 while 1:
@@ -307,8 +309,9 @@ while 1:
         for zk in range(ll):
             dir = path_to_watch
             fname = os.path.join(dir, added[zk])
-            print("hi now ",fname)
-            insertIntoInflux(fname)
+            if(fname.endswith(".kml")):
+            	print("hi now ",fname)
+            	insertIntoInflux(fname)
     else:
         print("Nothing changed")
     before=after

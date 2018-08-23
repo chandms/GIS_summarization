@@ -62,7 +62,6 @@ public class GISMerger {
         t1.start();
         BatchPoints batchPoints = BatchPoints
                 .database(dbName)
-                .retentionPolicy("awesome_policy")
                 .build();
         int totalNotMergedFiles = 0;
         int totalMergedFiles = 0;
