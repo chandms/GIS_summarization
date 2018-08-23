@@ -25,10 +25,11 @@ public class influx {
     public static final String VIDEO = "video";
     public static final String AUDIO = "audio";
 
+    public static String directory="";
 
 
     public static void main(String args[]) throws IOException {
-
+        directory=args[0];
         map = new HashMap<>();
         InfluxDB influxDB = InfluxDBFactory.connect("http://localhost:8086", "root", "root");
         String dbName = "gis";
@@ -90,7 +91,7 @@ public class influx {
                 //System.out.println("pupul    ............");
                 MergingDecisionPolicy mergingDecisionPolicy = new MergingDecisionPolicy(MergingDecisionPolicy.DISTANCE_THRESHOLD_POLICY
                 ,40,0);
-                GISMerger.mergeGIS(mergingDecisionPolicy,kmlObjects,map);
+                GISMerger.mergeGIS(mergingDecisionPolicy,kmlObjects,map,directory);
                 //System.out.println("series.getTags() = " + series.getTags());
                 /*System.out.println("Hi chandrika");
                 for (Map.Entry<String, List<point>> entry: map.entrySet())

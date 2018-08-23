@@ -292,7 +292,7 @@ def insertIntoInflux(kmlfile):
     print(result)
 
 
-path_to_watch = "C:/Users/Pupul/Desktop/kml/"
+path_to_watch = "/home/chandrika/Desktop/GIS_summarization/kmlFiles/"
 before = dict()
 print("before ",dict)
 while 1:

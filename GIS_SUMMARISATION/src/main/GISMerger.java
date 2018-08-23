@@ -17,9 +17,9 @@ import java.util.concurrent.TimeUnit;
 
 public class GISMerger {
     public static HashMap<String,List<point>> map;
-
+    public static String dir="";
     public static String msg="";
-    public static File file = new File("C:/Users/Pupul/Desktop/merged.geojson");
+    public static File file = null;
     public static PrintWriter printWriter =null;
     public static BufferedWriter bufferedWriter=null;
 
@@ -50,8 +50,9 @@ public class GISMerger {
 
 
     //return number of not merged files
-    public static void mergeGIS( MergingDecisionPolicy mergeDecisionPolicy,List<KmlObject> kmlObjects,HashMap<String,List<point>> mp) throws IOException {
+    public static void mergeGIS( MergingDecisionPolicy mergeDecisionPolicy,List<KmlObject> kmlObjects,HashMap<String,List<point>> mp,String d) throws IOException {
         map=mp;
+        file= new File(d+"merged.geojson");
         bufferedWriter = new BufferedWriter(new FileWriter(file,true));
         printWriter = new PrintWriter(file);
         printWriter.write("");

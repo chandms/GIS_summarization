@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="32b5f483-8026-4fa2-bb97-e8823da44142" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$USER_HOME$/Desktop/jarFiles/target/" />
+    <ignored path="$PROJECT_DIR$/../../jarFiles/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -125,6 +125,9 @@
       <find>16199b0366b0199c</find>
       <find>buff</find>
       <find>msg</find>
+      <find>Mer</find>
+      <find>merged.</find>
+      <find>GisMe</find>
     </findStrings>
     <replaceStrings>
       <replace>point</replace>
@@ -151,7 +154,7 @@
         <option value="$PROJECT_DIR$/src/SoftTfidf/TFIDF.java" />
         <option value="$PROJECT_DIR$/src/SoftTfidf/WinklerRescorer.java" />
         <option value="$PROJECT_DIR$/src/Merger.java" />
-        <option value="$USER_HOME$/Desktop/jarFiles/pom.xml" />
+        <option value="$PROJECT_DIR$/../../jarFiles/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/point.java" />
         <option value="$PROJECT_DIR$/src/main/merger.java" />
         <option value="$PROJECT_DIR$/src/main/KmlObject.java" />
@@ -225,8 +228,8 @@
     <property name="Repository.Attach.JavaDocs" value="true" />
     <property name="Repository.Attach.Sources" value="true" />
     <property name="SearchEverywhereHistoryKey" value="pom.xml&#9;FILE&#9;file://C:/Users/Pupul/Desktop/jarFiles/pom.xml&#10;gettile&#9;PSI&#9;JAVA://main.KmlObject#getTileName" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/jarFiles/influxdb-java-2.12.jar!/" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -255,6 +258,7 @@
     <configuration name="cm" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.influx" />
       <module name="GIS_SUMMARISATION" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/../" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -679,7 +683,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/jarFiles/pom.xml">
+    <entry file="file://$PROJECT_DIR$/../../jarFiles/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="350" column="39" lean-forward="true" selection-start-line="350" selection-start-column="39" selection-end-line="350" selection-end-column="39" />
@@ -788,7 +792,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited />
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -17,7 +17,7 @@ var gl = L.mapboxGL({
       }).addTo(map);
 map.setView(new L.LatLng(23.5499538, 87.2856928),15);
 
-readTextFile("file:///C:/Users/Pupul/Desktop/merged.geojson");
+readTextFile("./../merged.geojson");
 
 function readTextFile(file)
 {
