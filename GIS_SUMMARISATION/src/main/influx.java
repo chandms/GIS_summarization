@@ -43,8 +43,8 @@ public class influx {
             System.out.println("error ");
             return;
         }
-        influxDB.createDatabase(dbName);
-        influxDB.createRetentionPolicy("awesome_policy", "gis", "30d", '3', true);
+        //influxDB.createDatabase(dbName);
+        //influxDB.createRetentionPolicy("awesome_policy", "gis", "30d", '3', true);
         Query query = new Query("select lat,long,map from kml", "gis");
         QueryResult queryResult = influxDB.query(query);
 

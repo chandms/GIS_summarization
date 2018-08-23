@@ -42,8 +42,8 @@ public class GISMerger {
                 System.out.println("error ");
                 return;
             }
-            influxDB.createDatabase(dbName);
-            influxDB.createRetentionPolicy("awesome_policy", dbName, "3d", '3', true);
+            //influxDB.createDatabase(dbName);
+            //influxDB.createRetentionPolicy("awesome_policy", dbName, "3d", '3', true);
 
         }
     }

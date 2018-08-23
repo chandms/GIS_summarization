@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="GIS_SUMMARISATION:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="32b5f483-8026-4fa2-bb97-e8823da44142" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
