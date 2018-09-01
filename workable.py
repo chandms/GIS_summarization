@@ -2,23 +2,25 @@ import re
 import time,os
 from xml import dom
 from influxdb import InfluxDBClient
+import xml.etree.ElementTree as ET
 from xml.dom.minidom import Node
 from xml.dom import minidom
 import collections
 from influxdb import SeriesHelper
+from lxml import etree
+from io import StringIO
 import sys
+from xml.dom.minidom import parseString
+import time
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
 
 
 
 fld=[]
 
 
-
 myclient = InfluxDBClient('127.0.0.1', 8086, 'root', 'root', database='gis')
-
-# myclient.create_database('gis')
-# myclient.create_retention_policy('awesome_policy', '30d', '3', default=True)
-
 
 class MySeriesHelper(SeriesHelper):
     # """Instantiate SeriesHelper to write points to the backend."""
@@ -45,6 +47,7 @@ class MySeriesHelper(SeriesHelper):
 
         autocommit= True
 
+
 def traverse(root,myDict):
     global f
     if root.childNodes:
@@ -64,9 +67,6 @@ def traverse(root,myDict):
                             if (y == 0):
                                 myDict[f].append(cn.firstChild.nodeValue)
                             y = y + 1
-                    else:
-                        name = dom.getElementsByTagName('value')
-                        myDict[f].append(name[0].firstChild.nodeValue)
                 elif(node.tagName == 'value'):
                     continue
                 else:
@@ -78,7 +78,6 @@ def traverse(root,myDict):
                         else:
                             prev = nn
             traverse(node,myDict)
-
 
 def insertIntoInflux(kmlfile):
     myDict = collections.defaultdict(list)
@@ -118,6 +117,8 @@ def insertIntoInflux(kmlfile):
                 o=o+1
     
     nml=len(myDict['name'])
+    extra=myDict['nof']
+    nameMap=myDict['name']
     latMap=collections.defaultdict(list)
     longMap=collections.defaultdict(list)
     freq={}
@@ -154,7 +155,7 @@ def insertIntoInflux(kmlfile):
                 temp['source'].append(st[1])
                 temp['destination'].append(st[2])
                 temp['priority'].append(st[3])
-                temp['metadata'].append(st[4])
+                temp['metadata'].append(cur_list[3])
                 temp['text'].append('##')
             else:
                 temp['source'].append('##')
@@ -193,7 +194,7 @@ def insertIntoInflux(kmlfile):
                 fg=fg+1
                 tt.append(myDict[kk][k])
         if fg==0:
-         myDict[kk]=tt
+            myDict[kk]=tt
     
     tdict= collections.defaultdict(list)
     for kk, vv in myDict.items():
@@ -221,7 +222,7 @@ def insertIntoInflux(kmlfile):
     d=0
     while jk<nf or cc<md:
         d=0
-		#print("DEBUG ",cc,md,myDict['map'][cc])
+        #print("DEBUG ",cc,md,myDict['map'][cc])
         if(cc<md and myDict['map'][cc]!='##' and myDict['map'][cc]!='audio' and myDict['map'][cc]!='video' and myDict['map'][cc]!='image'):
             d= freq[myDict['map'][cc]]
         print("d = ", d,"jk = ",jk)
@@ -244,8 +245,56 @@ def insertIntoInflux(kmlfile):
                     if(myDict[kk][cc]!='##'):
                         dc[kk]=myDict[kk][cc]
                     else:
-                        dc[kk]="........"
-            MySeriesHelper(**dc)
+                        dc[kk]=""
+            print("hi1 ",dc)
+            nflag=0
+            tflag=0
+            if(dc['metadata'] is not ""):
+                mm=myclient.query('use gis')
+                res = myclient.query('select distinct(metadata) from kml')
+                print(res,'++++++++++++++++++++++++++++++++++')
+                if(res is not None):
+	                res = list(res.get_points(measurement='kml'))
+	                print("1 Hi res ",len(res))
+	                for met in range(len(res)):
+	                    print("res[met]['metadata']=",res[met]['distinct'])
+	                    print("dc['metadata']=",dc['metadata'])
+	                    if res[met]['distinct'] is not None and dc['metadata'] in res[met]['distinct']:
+	                        nflag=1
+	                        break
+            else:
+                querySt=""
+                print("pupul ")
+                myclient.query('use gis')
+                res = myclient.query('select distinct(text) from kml')
+                print(res,'++++++++++++++++++++++++++++++++++')
+                if(res is not None):
+	                res = list(res.get_points(measurement='kml'))
+	                print("2 Hi res ",len(res))
+	                for met in range(len(res)):
+	                    print("res[met]['distinct']=",res[met]['distinct'])
+	                    print("dc['text']=",dc['text'])
+	                    if res[met]['distinct'] is not None and dc['text'] in res[met]['distinct']:
+	                        nflag=1
+	                        querySt=dc['text']
+	                        break
+                # if(nflag==1):
+                #     queryForm="select timeStamp from kml where text='"+querySt+"'"
+                #     print(queryForm)
+                #     qq=myclient.query(queryForm)
+                #     qq = list(qq.get_points(measurement='kml'))
+                #     print(qq)
+                #     for ii in range(len(qq)):
+                #         if(qq[ii]['timeStamp']==dc['timeStamp']):
+                #             tflag=1
+                #             break
+                #         else:
+                #             tflag=0
+                #             nflag=0
+
+            if(nflag==0 and tflag==0):
+                print(dc)
+                MySeriesHelper(**dc)
             for kk, vm in dc.items():
                 print(kk, vm)
         else:
@@ -266,13 +315,43 @@ def insertIntoInflux(kmlfile):
                             if(myDict[kk][cc]!='##'):
                                 dc[kk]=myDict[kk][cc]
                             else:
-                                dc[kk]="........"
+                                dc[kk]=""
                     elif(kk=='long'):
                         dc[kk]=longList[j]
                     elif(kk=='lat'):
                         dc[kk]=latList[j]
                     elif(kk=='cid'):
                         continue
+                nflag=0
+                print("hi ",dc)
+                if(dc['metadata'] is not ""):
+                	er="hi there "
+                	myclient.query('use gis')
+                	res=myclient.query('select count(metadata) from kml where metadata='+dc['metadata']+"'")
+                	print(res,'++++++++++++++++++++++++++++++++++')
+                	if(res is not None):
+	                	res = list(res.get_points(measurement='kml'))
+	                	print("hey hey ",len(res))
+	                	counter=0
+	                	for met in range(len(res)):
+	                		counter=res[met]['count']
+	                		break
+	                	print("counter ",count)
+	                	if(counter==len(extra)):
+	                		nflag=1
+                if(nflag==0):
+                	MySeriesHelper(**dc)
+                # nflag=0
+                # if(dc['metadata'] is not ""):
+                #     res = myclient.query('select distinct(metadata) from kml')
+                #     res = list(res.get_points(measurement='kml'))
+                #     for met in range(len(res)):
+                #         print("res[met]['metadata']=",res[met]['distinct'])
+                #         print("dc['metadata']=",dc['metadata'])
+                #         if res[met]['distinct'] is not None and dc['metadata'] in res[met]['distinct']:
+                #             nflag=1
+                #             break
+                # if(nflag==0):
                 MySeriesHelper(**dc)
                 for kk,vm in dc.items():
                     print(kk,vm)
@@ -287,27 +366,60 @@ def insertIntoInflux(kmlfile):
     result= myclient.query('select * from kml_data')
     print(result)
 
-path_to_watch=sys.argv[1]
-before = dict()
-print("before ",dict)
-while 1:
-    time.sleep(2)
-    after = dict([(f, None) for f in os.listdir(path_to_watch)])
-    added = [f for f in after if not f in before]
-    removed = [f for f in before if not f in after]
-    if added:
-        print("after ",dict)
-        print("Added: ", ", ".join(added))
-        ll = len(added)
-        for zk in range(ll):
-            dir = path_to_watch
-            fname = os.path.join(dir, added[zk])
-            if(fname.endswith(".kml")):
-            	print("hi now ",fname)
-            	insertIntoInflux(fname)
-    else:
-        print("Nothing changed")
-    before=after
+
+
+class Watcher:
+    DIRECTORY_TO_WATCH =sys.argv[1]
+
+    def __init__(self):
+        self.observer = Observer()
+
+    def run(self):
+        event_handler = Handler()
+        self.observer.schedule(event_handler, self.DIRECTORY_TO_WATCH, recursive=True)
+        self.observer.start()
+
+        self.observer.join()
+
+
+class Handler(FileSystemEventHandler):
+
+    @staticmethod
+    def on_any_event(event):
+        i=0
+        if event.is_directory:
+            return None
+
+        elif event.event_type == 'created' or event.event_type == 'modified':
+            # Take any action here when a file is first created.
+            i=i+1
+            path=event.src_path
+            if(path.endswith('.kml')):
+                flag=0
+                try:
+                    tree=minidom.parse(path)
+                    root=tree.documentElement
+                except:
+                    flag=1
+                if(flag==1):
+                    print(path," is not validated file ")
+                else:
+                    print("hi now ",path)
+                    insertIntoInflux(path)
+
+
+
+
+
+
+
+
+w = Watcher()
+w.run()
+
+
+
+
             
 
 
