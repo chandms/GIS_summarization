@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="map.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui.js"></script>
+    <title>GIS Editor and Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- LEAFLET CSS -->
+    <link rel="stylesheet" href="leaflet.css"/>
+    <link rel="stylesheet" href="leaflet.draw.css"/>
+
+    <!-- mapbox -->
+    <link rel="stylesheet" href="mapbox-gl.css" />
+
+    
+    <link rel="stylesheet" href="style.css"/>
+
+</head>
+<script >
+function myFunc(version)
+{
+    
+    readTextFile("merged.txt",version);
+}
+function countVersion()
+{
+    console.log("do or die");
+
+    var count = getCount("merged.txt");
+    var res="",html="";
+    for(var j=0;j<=count;j++)
+    {
+         $('<option onclick="myFunc('+j+')" value="'+ "Version"+j +'">' + j + '</option>').appendTo('#myDropdown');
+        res=res+"<a href=\"#\" onclick =\"myFunc("+j+")\" >Version"+j+"</a> <br>"
+    }
+    console.log("result = ",res);
+       
+}
+
+</script>
+<body>
+    <div id="map"></div>
+    <div id="count">
+        <div class="count" id="videoCount"></div>
+        <div class="count" id="imageCount"></div>
+        <div class="count" id="audioCount"></div>
+        <div class="count" id="contactCount"></div>
+        <div class="count" id="mapCount"></div>
+        <div class="count" id="textCount"></div>
+    </div>
+    <div id="drop_down" class="dropdown">
+      <button onclick="countVersion()" class="dropbtn">Version</button>
+      <select id="myDropdown" name="brand">
+      <option value="none"></option>
+                </select>
+    </div> 
+    <!-- GIS Description Input Modal -->
+    <div id="descriptionInputModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Please Enter Some Description..</p>
+        <textarea id="description-input">
+        </textarea>
+        <button id="save-button">Save</button> 
+        <button id="cancel-button">Cancel</button> 
+      </div>
+    </div>
+
+</body>
+
+
+<!-- LEAFLET JS -->
+
+<script src="leaflet.js"></script>
+<script src="leaflet.draw.js"></script>
+
+<!-- Mapbox GL -->
+<script src="mapbox-gl.js"></script>
+<script src="leaflet-mapbox-gl.js"></script>
+ 
+ 
+     
+
+
+
+
+<script type="text/javascript" src="map.js"></script>
+</html>
