@@ -25,6 +25,9 @@ map.setView(new L.LatLng(23.5499538, 87.2856928),15);
 // KGP SALTLAKE:
 //map.setView(new L.LatLng(22.57381,88.41790),18);
 
+var contact_list =[];
+
+contact_map = new Map();
 
 
 
@@ -34,13 +37,6 @@ readCounter("counter.json");
 catch(err){
     console.log("counter file "+err);
 }
-
-/*try{
-readTextFile("merged.txt");
-}
-catch(err){
-    console.log("merged file" + err);
-}*/
 
 try{
 readCluster("clustermap.geojson");
@@ -77,6 +73,158 @@ function getRandomColor() {
   }
   return color;
 }
+
+//////////////////////////
+
+function readVideo(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    var res=0;
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+               // console.log("chandrika  "+allText);
+                var obj = JSON.parse(allText);
+                res= obj['video'].length;
+                
+               // alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+    return res;
+}
+function readAudio(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    var res=0;
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                //console.log("chandrika  "+allText);
+                var obj = JSON.parse(allText);
+                res= obj['audio'].length;
+                
+               // alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+    return res;
+}
+function readImage(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    var res=0;
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                //console.log("chandrika  "+allText);
+                var obj = JSON.parse(allText);
+                res= obj['image'].length;
+                
+               // alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+    return res;
+}
+function readMap(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    var res=0;
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                //console.log("chandrika  "+allText);
+                var obj = JSON.parse(allText);
+                res= obj['sum'].length;
+                
+               // alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+    return res;
+}
+function readText(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    var res=0;
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                //console.log("chandrika  "+allText);
+                var obj = JSON.parse(allText);
+                res= obj['text'];
+                
+               // alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+    return res;
+}
+
+function readContact(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    var res=0;
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                //console.log("chandrika  "+allText);
+                var obj = JSON.parse(allText);
+                res= obj['pgp'].length;
+                
+               // alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+    return res;
+}
+
+
+
+
+
+
+
+
+
+///////////////////////////
 function readCounter(file)
 {
     var rawFile = new XMLHttpRequest();
@@ -88,20 +236,91 @@ function readCounter(file)
             if(rawFile.status === 200 || rawFile.status == 0)
             {
                 var allText = rawFile.responseText;
-                console.log("chandrika  "+allText);
+                //console.log("chandrika  "+allText);
                 var obj = JSON.parse(allText);
-                console.log(obj['video']);
-                document.getElementById('videoCount').textContent="Videos : "+obj['video'];
-                document.getElementById('imageCount').textContent="Images : "+obj['image'];
-                document.getElementById('audioCount').textContent="Audios : "+obj['audio'];
-                document.getElementById('contactCount').textContent="Contacts : "+obj['pgp'];
-                document.getElementById('mapCount').textContent="Maps : "+obj['sum'];
+                //console.log(obj['video']);
+                document.getElementById('videoCount').textContent="Videos : "+obj['video'].length;
+                document.getElementById('imageCount').textContent="Images : "+obj['image'].length;
+                document.getElementById('audioCount').textContent="Audios : "+obj['audio'].length;
+                document.getElementById('contactCount').textContent="Contacts : "+obj['pgp'].length;
+                document.getElementById('mapCount').textContent="Maps : "+obj['sum'].length;
                 document.getElementById('textCount').textContent="Texts : "+obj['text'];
-               // alert(allText);
+                
+                contact_list=obj['pgp'];
+                console.log(contact_list);
+               for(var con in contact_list)
+               {
+                    var st= contact_list[con];
+                    contact_map[st]="";
+                    console.log("st = "+st);
+                    var my_list=[];
+                    var vid=0,aud=0,img=0,mp=0;
+                    for(var v in obj['video'])
+                    {
+                        var name= obj['video'][v].split('_',3);
+                        if(name[1].includes(contact_list[con]))
+                        {
+                            vid++;
+                        }
+                    }
+                    for(var i in obj['audio'])
+                    {
+                        console.log(obj['audio'][i])
+                        var name= obj['audio'][i].split('_',3);
+                        if(name[1].includes(contact_list[con]))
+                        {
+                            aud++;
+                        }
+                    }
+                    for(var k in obj['image'])
+                    {
+                        var name= obj['image'][k].split('_',3);
+                        if(name[1].includes(contact_list[con]))
+                        {
+                            img++;
+                        }
+                    }
+                    for(var y in obj['sum'])
+                    {
+                        console.log(obj['sum']);
+                        var name= obj['sum'][y].split('_',3);
+                        if(name[1].includes(contact_list[con]))
+                        {
+                            mp++;
+                        }
+                    
+                    }
+                    contact_map[st]=vid+" "+aud+" "+img+" "+mp;
+               }
+               
+               
             }
         }
     }
     rawFile.send(null);
+}
+function information()
+{
+    var contact_no= document.getElementById('myContactNo').value;
+    var res="";
+    console.log("pupul My contact = ",contact_no);
+    console.log(typeof(contact_no),contact_no);
+    for (var k in contact_map)
+    {
+        if(contact_no==k)
+            console.log("true");
+        console.log(k,contact_map[k]);
+    }
+    if(contact_no!= "")
+    {
+        console.log("amar nam Chandrika");
+        console.log("mujhko"+contact_map[contact_no]);
+        res=contact_map[contact_no];
+
+    }
+    else
+        console.log("No given value");
+    return res;
 }
 function getCount(file)
 {
@@ -127,6 +346,42 @@ function getCount(file)
     rawFile.send(null); 
     return val;
 }
+function getTime(file,ind)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    var val="";
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var lines = allText.split('\n');
+                for(var j=0;j<lines.length;j++)
+                {
+                    var word = lines[j].split('%');
+                    if(word[1]==ind)
+                    {
+                        val=word[0];
+                        break;
+                    }
+                }
+                
+            }
+        }
+    }
+    rawFile.send(null); 
+    return val;
+}
+
+function text_sum(text)
+{
+    //alert("hi text_sum= "+text);
+    document.getElementById('t_sum').innerHTML=text;
+}
+
 function readTextFile(file,version)
 {
     console.log("got = ",version);
@@ -142,130 +397,159 @@ function readTextFile(file,version)
             {
                 var allText = rawFile.responseText;
                 var lines = allText.split('\n');
-                for(var i = 0;i < lines.length;i++){
+                for(var i = 0;i < lines.length;i++)
+                {
                     if(lines[i]!="")
                     {
-                      word= lines[i].split('%');
-                      if(word[1]==version)
-                      {
-                       console.log('hope it worked ');
-                      if(word[2]=="map")
-                      {
-                        letter = word[4].split(',');
-                        if(letter in MyMap)
-                            MyMap[letter]=MyMap[letter]+"<br>"+"map"+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + word[3] + "</a>";
-                        else
-                            MyMap[letter]="map"+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + word[3] + "</a>";
-                        var array = [];
-                        cord = word[0].split(',');
-                        for(var ln=0;ln<cord.length;ln++)
+                        word= lines[i].split('%');
+                        if(word[1]==version)
                         {
-                            latlong = cord[ln].split(' ');
-                            var sarray=[];
-                            sarray.push(latlong[0]);
-                            sarray.push(latlong[1]);
-                            array.push(sarray);
 
+                            if(word[2]=="map")
+                            {
+                                letter = word[4].split(',');
+                                if(letter in MyMap)
+                                    MyMap[letter]=MyMap[letter]+"<br>"+"map"+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + "<img src='"+"./sync/SurakshitMap/"+word[3]+"'>" + "</a>";
+                                else
+                                    MyMap[letter]="map"+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + "<img src='"+"./sync/SurakshitMap/"+word[3]+"'>" + "</a>";
+                                var array = [];
+                                cord = word[0].split(',');
+                                for(var ln=0;ln<cord.length;ln++)
+                                {
+                                    latlong = cord[ln].split(' ');
+                                    var sarray=[];
+                                    sarray.push(latlong[0]);
+                                    sarray.push(latlong[1]);
+                                    array.push(sarray);
+
+                                }
+                                var polygon = L.polygon(array, {color: 'red'}).addTo(map);
+                            }
+                            else if(word[2]=="normal")
+                            {
+                                var media_type= "";
+                                if(word[3].endsWith('.mp4'))
+                                    media_type="video";
+                                else if(word[3].endsWith('.jpeg'))
+                                    media_type="image";
+                                else
+                                    media_type="audio";
+                                console.log("media type = ",media_type);
+                                letter = word[0].split(' ');
+                                if(letter in MyMap)
+                                {
+                                    if(media_type=='image')
+                                        MyMap[letter]=MyMap[letter]+"<br>"+media_type+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + "<img src='"+"./sync/SurakshitImages/"+word[3]+"'>" + "</a>";
+                                    else if(media_type=='video')
+                                        //MyMap[letter]=MyMap[letter]+"<br>"+media_type+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + word[3] + "</a>";
+                                        MyMap[letter]=MyMap[letter]+"<br>"+media_type+" = "+ "<video width='160' height='120' controls='controls' poster='back_ground.jpeg'> <source src='"+"./sync/SurakshitVideos/"+word[3]+"' type='video/mp4'>Bummer, your  browser does not support the video tag.</video>";
+                                    else
+                                        MyMap[letter]=MyMap[letter]+"<br>"+media_type+" = "+ "<audio  controls='controls' autoplay > <source src='"+"./sync/SurakshitAudio/"+word[3]+"' type='audio/3gp'>Bummer, your  browser does not support the audio tag.</audio>";
+
+                                        
+
+                                }
+                                else
+                                {
+                                    if(media_type=='image')
+                                        MyMap[letter]=media_type+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + "<img src='"+"./sync/SurakshitImages/"+word[3]+"'>" + "</a>";
+                                    else if(media_type=='video')
+                                        MyMap[letter]=media_type+" = "+ "<video width='160' height='120' controls='controls' poster='back_ground.jpeg'> <source src='"+"./sync/SurakshitVideos/"+word[3]+"' type='video/mp4'>Bummer, your  browser does not support the video tag.</video>";
+                                        //MyMap[letter]=media_type+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + "<video width='160' height='120' controls='controls' poster='back_ground.jpeg'> <source src='"+"./sync/SurakshitVideos/"+word[3]+"' type='video/mp4'>Bummer, your  browser does not support the video tag.</video>"+ "</a>";
+                                    else
+                                        MyMap[letter]=media_type+" = "+ "<audio controls='controls' autoplay > <source src='"+"./sync/SurakshitAudio/"+word[3]+"' type='audio/3gp'>Bummer, your  browser does not support the audio tag.</audio>";
+                                }
+                            }
+                            else if(word[2]=="cluster")
+                            {
+                                letter = word[4].split(',');
+                                if(letter in MyMap)
+                                    MyMap[letter]=MyMap[letter]+"<br>"+"map"+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + "<img src='"+"./sync/SurakshitMap/"+word[3]+"'>" + "</a>";
+                                else
+                                    MyMap[letter]="map"+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + "<img src='"+"./sync/SurakshitMap/"+word[3]+"'>" + "</a>";
+                                console.log("got map ",word[3]);
+
+                                var array = [];
+                                cord = word[0].split(',');
+                                var maxLat=-90,maxLon=-180,minLat=90,minLon=180;
+                                for(var ln=0;ln<cord.length;ln++)
+                                {
+                                    latlong = cord[ln].split(' ');
+                                    var sarray=[];
+                                    sarray.push(latlong[0]);
+                                    sarray.push(latlong[1]);
+                                    array.push(sarray);
+                                    maxLat=Math.max(maxLat,latlong[0]);
+                                    maxLon=Math.max(maxLon,latlong[1]);
+                                    minLat = Math.min(minLat,latlong[0]);
+                                    minLon= Math.min(minLon,latlong[1]);
+
+                                }
+                                var centLat=(maxLat+minLat)/2;
+                                var centLon=(minLon+maxLon)/2;
+                                var polygon = L.polygon(array, {color: 'green'}).addTo(map);
+                                var media = word[5].split('::');
+
+                                var pops="";
+                                var my_text="";
+                                var fgg=0;
+                                for(var jt=0;jt<media.length;jt++)
+                                {
+                                    if(media[jt].endsWith('.mp4'))
+                                    {
+                                        pops=pops+"video"+" = "+ "<video width='160' height='120' controls='controls' poster='back_ground.jpeg'> <source src='"+"./sync/SurakshitVideos/"+media[jt]+"' type='video/mp4'>Bummer, your  browser does not support the video tag.</video>";
+                                        //pops=pops+"video = "+ "<a target='_blank' href='viewer.html?file_name=" + media[jt] + "' >"  + media[jt] + "</a>";
+                                        pops=pops+"<br>";
+                                    }
+                                    else if(media[jt].endsWith('.jpeg'))
+                                    {
+                                        pops=pops+"image = "+ "<a target='_blank' href='viewer.html?file_name=" + media[jt] + "' >" + "<img src='"+"./sync/SurakshitImages/"+media[jt]+"'>"+ "</a>";
+                                        pops=pops+"<br>";
+                                    }
+
+                                    else if(media[jt].endsWith('.3gp'))
+                                    {
+                                        //pops=pops+"audio = "+ "<a target='_blank' href='viewer.html?file_name=" + media[jt] + "' >"  + media[jt] + "</a>";
+                                        pops=pops+"audio"+" = "+ "<audio controls='controls' autoplay > <source src='"+"./sync/SurakshitAudio/"+media[jt]+"' type='audio/3gp'>Bummer, your  browser does not support the audio tag.</audio>";
+                                        pops=pops+"<br>";
+                                    }
+                                    else
+                                    {
+                                        fgg++;
+                                        my_text=my_text+media[jt]+"<br>";
+                                    }
+                                }
+                                if(fgg!=0)
+                                {
+                                    pops=pops+'<a  target="_blank" href="textTab.html?text='+my_text+'">TEXT SUMMARY</a>';
+                                }
+                                console.log(maxLat,maxLon,minLat,minLon);
+                                console.log("centre", centLat, centLon);
+                                var mark = cord[0].split(' ');
+                                var media_plot = L.circle([mark[0],mark[1]],{color:'black',radius:2}).addTo(map);
+                                media_plot.bindPopup(pops);
+                            }
                         }
-                        var polygon = L.polygon(array, {color: 'red'}).addTo(map);
-
-                      }
-                      else if(word[2]=="normal")
-                      {
-                        var media_type= "";
-                        if(word[3].endsWith('.mp4'))
-                            media_type="video";
-                        else if(word[3].endsWith('.jpeg'))
-                            media_type="image";
-                        else
-                            media_type="audio";
-                        console.log("media type = ",media_type);
-                        letter = word[0].split(' ');
-                        if(letter in MyMap)
-                            MyMap[letter]=MyMap[letter]+"<br>"+media_type+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + word[3] + "</a>";
-                        else
-                            MyMap[letter]=media_type+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + word[3] + "</a>";
-                        
-                      }
-
-                      else if(word[2]=="cluster")
-                      {
-
-                        letter = word[4].split(',');
-                        if(letter in MyMap)
-                            MyMap[letter]=MyMap[letter]+"<br>"+"map"+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + word[3] + "</a>";
-                        else
-                            MyMap[letter]="map"+" = "+ "<a target='_blank' href='viewer.html?file_name=" + word[3] + "' >"  + word[3] + "</a>";
-                        console.log("got map ",word[3]);
-
-                        var array = [];
-                        cord = word[0].split(',');
-                        var maxLat=-90,maxLon=-180,minLat=90,minLon=180;
-                        for(var ln=0;ln<cord.length;ln++)
-                        {
-                            latlong = cord[ln].split(' ');
-                            var sarray=[];
-                            sarray.push(latlong[0]);
-                            sarray.push(latlong[1]);
-                            array.push(sarray);
-                            maxLat=Math.max(maxLat,latlong[0]);
-                            maxLon=Math.max(maxLon,latlong[1]);
-                            minLat = Math.min(minLat,latlong[0]);
-                            minLon= Math.min(minLon,latlong[1]);
-
-                        }
-                        var centLat=(maxLat+minLat)/2;
-                        var centLon=(minLon+maxLon)/2;
-                        var polygon = L.polygon(array, {color: 'green'}).addTo(map);
-                        var media = word[5].split('::');
-
-                        var pops="";
-                        for(var jt=0;jt<media.length;jt++)
-                        {
-                            if(media[jt].endsWith('.mp4'))
-                            {
-                                pops=pops+"video = "+ "<a target='_blank' href='viewer.html?file_name=" + media[jt] + "' >"  + media[jt] + "</a>";
-                                pops=pops+"<br>";
-                            }
-                            else if(media[jt].endsWith('.jpeg'))
-                            {
-                                pops=pops+"image = "+ "<a target='_blank' href='viewer.html?file_name=" + media[jt] + "' >"  + media[jt] + "</a>";
-                                pops=pops+"<br>";
-                            }
-
-                            else if(media[jt].endsWith('.3gp'))
-                            {
-                                pops=pops+"audio = "+ "<a target='_blank' href='viewer.html?file_name=" + media[jt] + "' >"  + media[jt] + "</a>";
-                                pops=pops+"<br>";
-                            }
-                            else
-                            {
-                                pops=pops+"text = "+media[jt]+"<br>";
-                            }
-                        }
-                        console.log(maxLat,maxLon,minLat,minLon);
-                        console.log("centre", centLat, centLon);
-                        var mark = cord[0].split(' ');
-                        var media_plot = L.circle([centLat,centLon],{color:'black',radius:2}).addTo(map);
-                        media_plot.bindPopup(pops);
+                        else if(word[1]>version)
+                            break;
                     }
                 }
+
+                for(kt in MyMap)
+                {
+                    console.log(MyMap[kt]);
+                        
+                    latlon=kt.split(',');
+                    var plot = L.marker([latlon[0],latlon[1]]).addTo(map);
+                    plot.bindPopup(MyMap[kt]);
+
                 }
                 
-                for(kt in MyMap){
-                        
-                        latlon=kt.split(',');
-                        var plot = L.marker([latlon[0],latlon[1]]).addTo(map);
-                        plot.bindPopup(MyMap[kt]);
-
-                }
-
-                      
-                    }
             }
         }
     }
-    rawFile.send(null);
+    rawFile.send(null); 
+    //return val;
 }
 function readCluster(file)
 {

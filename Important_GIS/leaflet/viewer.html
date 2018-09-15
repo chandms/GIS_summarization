@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Image Viewer</title>
+	<title>Media Viewer</title>
 </head>
-<body>
+<body style="background-color: rgb( 36, 219, 161 );">
+<h1 style="background-color: DodgerBlue; text-align: center;border:2px solid Tomato;"> NIT Durgapur </h1>
+<h2 style="background-color: Orange; text-align: center;"> GIS_Viewer </h1>
+<h1 style="background-color: rgb(238, 130, 238); text-align: center;"> Media </h1>
+<img id="the_image" src="" class="center">
 
-<img id="the_image" src="">
-
-<video id="the_video" width="400" controls>
+<video id="the_video" width="400" controls >
   <source id="the_video_src" src="" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
@@ -50,6 +52,13 @@ if(file_name.endsWith('mp4')){
 if(file_name.endsWith('3gp')){
 	document.getElementById("the_video_src").src = './sync/SurakshitAudio/'+file_name;		
 	document.getElementById("the_video").hidden = false;
+}
+
+if(file_name.endsWith('png')){
+
+  document.getElementById("the_image").src = './sync/SurakshitMap/'+file_name;   
+  document.getElementById("the_image").hidden = false;
+
 }
 
 </script>

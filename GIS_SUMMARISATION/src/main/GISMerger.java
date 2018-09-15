@@ -1,6 +1,7 @@
 package main;
 
 import SoftTfidf.JaroWinklerTFIDF;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.BatchPoints;
@@ -27,6 +28,7 @@ public class GISMerger {
 
 
 
+
     static InfluxDB influxDB = InfluxDBFactory.connect("http://localhost:8086", "root", "root");
     static String dbName = "Merged";
 
@@ -38,25 +40,46 @@ public class GISMerger {
         public void run() {
             Pong response = influxDB.ping();
             if (response.getVersion().equalsIgnoreCase("unknown")) {
-                //log.error("Error pinging server.");
+
                 System.out.println("error ");
                 return;
             }
-            //influxDB.createDatabase(dbName);
-            //influxDB.createRetentionPolicy("awesome_policy", dbName, "3d", '3', true);
+
 
         }
     }
 
 
     //return number of not merged files
-    public static void mergeGIS( MergingDecisionPolicy mergeDecisionPolicy,List<KmlObject> kmlObjects,HashMap<String,List<point>> mp,String d) throws IOException {
+    public static void mergeGIS( MergingDecisionPolicy mergeDecisionPolicy,List<KmlObject> kmlObjects,HashMap<String,List<point>> mp,String d,ArrayList<Video> videoArrayList,ArrayList<Image> imageArrayList,ArrayList<Audio> audioArrayList,ArrayList<Text> textArrayList,int version) throws IOException {
+
+
+        System.out.println("Entered into Merger");
+
         map=mp;
-        file= new File(d+"merged.geojson");
-        bufferedWriter = new BufferedWriter(new FileWriter(file,true));
-        printWriter = new PrintWriter(file);
-        printWriter.write("");
-        printWriter.close();
+        msg="";
+        Map<Object,Boolean> visit = new HashMap<>();
+        for(Video vid : videoArrayList)
+        {
+            if(visit.get(vid)==null)
+                visit.put(vid,false);
+        }
+        for(Audio aid : audioArrayList)
+        {
+            if(visit.get(aid)==null)
+                visit.put(aid,false);
+        }
+        for(Image img : imageArrayList)
+        {
+            if(visit.get(img)==null)
+                visit.put(img,false);
+        }
+        for(Text text : textArrayList)
+        {
+            if(visit.get(text)==null)
+                visit.put(text,false);
+        }
+
         secondary secondary = new secondary();
         Thread t1 = new Thread(secondary);
         t1.start();
@@ -65,7 +88,6 @@ public class GISMerger {
                 .build();
         int totalNotMergedFiles = 0;
         int totalMergedFiles = 0;
-       // Storage storage = new Storage(mapView.getContext());
         if (kmlObjects.size() <= 1)
             return;
         Map<String, List<KmlObject>> sameTileObjects = new HashMap<>();
@@ -140,12 +162,70 @@ public class GISMerger {
             }
             //System.out.println("Chandrika Mukherjee");
             int cl=0;
+            Map <KmlObject,ArrayList<String>> cluster= new HashMap<>();
             for (KmlObject object:mergedBucket){
 
+                for(Video video : videoArrayList)
+                {
+                    if(RegionUtil.coordinateInRegion(object,video.getLatitude(),video.getLongitude()))
+                    {
+                        visit.put(video,true);
+                        if(cluster.get(object)==null)
+                            cluster.put(object,new ArrayList<String>());
+                        cluster.get(object).add(video.getName());
 
+                    }
+
+                }
+                for(Audio audio : audioArrayList)
+                {
+                    if(RegionUtil.coordinateInRegion(object,audio.getLatitude(),audio.getLongitude()))
+                    {
+                        visit.put(audio,true);
+                        if(cluster.get(object)==null)
+                            cluster.put(object,new ArrayList<String>());
+                        cluster.get(object).add(audio.getName());
+
+                    }
+                }
+                for (Image image: imageArrayList)
+                {
+                    if(RegionUtil.coordinateInRegion(object,image.getLatitude(),image.getLongitude()))
+                    {
+                        visit.put(image,true);
+                        if(cluster.get(object)==null)
+                            cluster.put(object,new ArrayList<String>());
+                        cluster.get(object).add(image.getName());
+
+                    }
+                }
+                for(Text text: textArrayList)
+                {
+                    if(RegionUtil.coordinateInRegion(object,text.getLatitude(),text.getLongitude()))
+                    {
+                        visit.put(text,true);
+                        if(cluster.get(object)==null)
+                            cluster.put(object,new ArrayList<String>());
+                        cluster.get(object).add(text.getName());
+
+                    }
+                }
+                String clusterString="";
+                if(cluster.get(object)!=null) {
+                    for (int uj = 0; uj < cluster.get(object).size(); uj++) {
+                        if(uj!=0)
+                            clusterString = clusterString + "::" + cluster.get(object).get(uj);
+                        else
+                            clusterString = cluster.get(object).get(uj);
+                    }
+                }
+                cl=0;
+                String mapName="",position="";
                 for(point point : object.getPoints()) {
+                    mapName=point.getMap_name();
+                    position=point.getPosLatitude()+","+point.getposLongitute();
                     if (cl == 0)
-                        msg = msg + point.getLatitude() + " " + point.getLongitude();
+                        msg = msg +point.getLatitude() + " " + point.getLongitude();
                     else
                         msg = msg + "," + point.getLatitude() + " " + point.getLongitude();
                     cl++;
@@ -155,39 +235,172 @@ public class GISMerger {
                             .addField("map", object.getMessage())
                             .addField("lat", point.getLatitude())
                             .addField("long", point.getLongitude())
+                            .addField("metadata",point.getMap_name())
+                            .addField("posLat",point.getPosLatitude())
+                            .addField("posLong",point.getposLongitute())
+                            .addField("text","")
+                            .addField("year","")
+                            .addField("month","")
+                            .addField("day","")
+                            .addField("hour","")
+                            .addField("minute","")
+                            .addField("second","")
+                            .addField("version",version)
+                            .addField("cluster", clusterString)
                             .build();
                     batchPoints.point(point1);
                     influxDB.write(batchPoints);
 
                 }
+                String flag="map";
+                if(!clusterString.equals("")) {
+                    flag = "cluster";
+                }
+
+                msg=msg+"%"+Integer.toString(version)+"%"+flag+"%"+mapName+"%"+position+"%"+clusterString;
+                msg=msg+"\n";
+
+                //System.out.println(msg);
 
 
             }
-            msg=msg+"\n";
 
 
+        }
 
-            //save to file merged objects
-//            saveKMLObjectInDB(mergedBucket, manual, app);
+
+        for(Video video : videoArrayList)
+        {
+            if(visit.get(video)==false)
+            {
+                Point point1 = Point.measurement("memory")
+                        .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                        .addField("map", "video")
+                        .addField("lat", (float)0)
+                        .addField("long", (float)0)
+                        .addField("metadata",video.getName())
+                        .addField("posLat",video.getLatitude())
+                        .addField("posLong",video.getLongitude())
+                        .addField("text","")
+                        .addField("year", video.getYear())
+                        .addField("month",video.getMonth())
+                        .addField("day",video.getDay())
+                        .addField("hour",video.getHour())
+                        .addField("minute",video.getMinute())
+                        .addField("second",video.getSecond())
+                        .addField("version",version)
+                        .addField("cluster", "")
+                        .build();
+                batchPoints.point(point1);
+                influxDB.write(batchPoints);
+                msg=msg+video.getLatitude()+" "+video.getLongitude();
+                msg=msg+"%"+Integer.toString(version)+"%"+"normal"+"%"+video.getName()+"%";
+                msg=msg+"\n";
+                //System.out.println(msg);
+            }
+        }
+        for(Audio audio : audioArrayList)
+        {
+            if(visit.get(audio)==false)
+            {
+                Point point1 = Point.measurement("memory")
+                        .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                        .addField("map", "audio")
+                        .addField("lat", (float)0)
+                        .addField("long", (float)0)
+                        .addField("metadata",audio.getName())
+                        .addField("posLat",audio.getLatitude())
+                        .addField("posLong",audio.getLongitude())
+                        .addField("text","")
+                        .addField("year", audio.getYear())
+                        .addField("month",audio.getMonth())
+                        .addField("day",audio.getDay())
+                        .addField("hour",audio.getHour())
+                        .addField("minute",audio.getMinute())
+                        .addField("second",audio.getSecond())
+                        .addField("version",version)
+                        .addField("cluster", "")
+                        .build();
+                batchPoints.point(point1);
+                influxDB.write(batchPoints);
+                msg=msg+audio.getLatitude()+" "+audio.getLongitude();
+                msg=msg+"%"+Integer.toString(version)+"%"+"normal"+"%"+audio.getName()+"%";
+               msg=msg+"\n";
+                //System.out.println(msg);
+            }
+        }
+
+        for(Image image : imageArrayList)
+        {
+            if(visit.get(image)==false)
+            {
+                Point point1 = Point.measurement("memory")
+                        .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                        .addField("map", "image")
+                        .addField("lat", (float)0)
+                        .addField("long", (float)0)
+                        .addField("metadata",image.getName())
+                        .addField("posLat",image.getLatitude())
+                        .addField("posLong",image.getLongitude())
+                        .addField("text","")
+                        .addField("year", image.getYear())
+                        .addField("month",image.getMonth())
+                        .addField("day",image.getDay())
+                        .addField("hour",image.getHour())
+                        .addField("minute",image.getMinute())
+                        .addField("second",image.getSecond())
+                        .addField("version",version)
+                        .addField("cluster", "")
+                        .build();
+                batchPoints.point(point1);
+                influxDB.write(batchPoints);
+                msg=msg+image.getLatitude()+" "+image.getLongitude();
+                msg=msg+"%"+Integer.toString(version)+"%"+"normal"+"%"+image.getName()+"%";
+                msg=msg+"\n";
+                //System.out.println(msg);
+            }
+        }
+
+        for(Text text : textArrayList)
+        {
+            if(visit.get(text)==false)
+            {
+                Point point1 = Point.measurement("memory")
+                        .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                        .addField("map", "text")
+                        .addField("lat", (float)0)
+                        .addField("long", (float)0)
+                        .addField("metadata","")
+                        .addField("posLat",text.getLatitude())
+                        .addField("posLong",text.getLongitude())
+                        .addField("text",text.getName())
+                        .addField("year", text.getName())
+                        .addField("month",text.getMonth())
+                        .addField("day",text.getDay())
+                        .addField("hour",text.getHour())
+                        .addField("minute",text.getMinute())
+                        .addField("second",text.getSecond())
+                        .addField("version",version)
+                        .addField("cluster", "")
+                        .build();
+                batchPoints.point(point1);
+                influxDB.write(batchPoints);
+                msg=msg+text.getLatitude()+" "+text.getLongitude();
+                msg=msg+"%"+Integer.toString(version)+"%"+"normal"+"%"+text.getName()+"%";
+                msg=msg+"\n";
+                //System.out.println(msg);
+            }
         }
 
         System.out.println(msg);
-        bufferedWriter.write(msg);
+        file= new File(d+"merged.txt");
+        bufferedWriter = new BufferedWriter(new FileWriter(file,true));
+        bufferedWriter.append(msg);
         bufferedWriter.close();
-       /* System.out.println("hi map");
-        for (Map.Entry<String, List<point>> entry: map.entrySet())
-        {
-            System.out.println("Key = "+entry.getKey());
-            System.out.println("Vlaue  = "+entry.getValue());
-        }*/
-        //recording time after merging
         long tEnd = System.currentTimeMillis();
         long tDelta = tEnd - tStart;
         double elapsedSeconds = tDelta / 1000.0;
-//        totalNotMergedFiles = file.listFiles().length - totalMergedFiles;
-//        Log.d("Total Merged Files", "" + totalMergedFiles);
-//        Log.d("Total Not Merged Files", "" + totalNotMergedFiles);
-//        return totalNotMergedFiles;
+
     }
 
     //helper method to copy elements between objects
