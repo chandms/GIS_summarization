@@ -77,6 +77,47 @@ public class influx {
             ArrayList<Audio> audioArrayList = new ArrayList<>();
             ArrayList<Image> imageArrayList = new ArrayList<>();
             ArrayList<Text>  textArrayList = new ArrayList<>();
+            HashMap<String,Integer> contactMap = new HashMap<>();
+            HashMap<String,Double>  mediaMap = new HashMap<>();
+            File imageFold= new File(args[0]+"sync/SurakshitImages/");
+            if(imageFold.exists()) {
+                for (File file : imageFold.listFiles()) {
+                    if (file.isFile()) {
+                        double fileSize = file.length();
+                        mediaMap.put(file.getName(), fileSize);
+                    }
+                }
+            }
+
+            File videoFold = new File(args[0]+"sync/SurakshitVideos/");
+            if(videoFold.exists()) {
+                for (File file : videoFold.listFiles()) {
+                    if (file.isFile()) {
+                        double fileSize = file.length();
+                        mediaMap.put(file.getName(), fileSize);
+                    }
+                }
+            }
+            File audioFold = new File(args[0]+"sync/SurakshitAudio/");
+            if(audioFold.exists()) {
+                for (File file : audioFold.listFiles()) {
+                    if (file.isFile()) {
+                        double fileSize = file.length();
+                        mediaMap.put(file.getName(), fileSize);
+                    }
+                }
+            }
+            File mapFold = new File(args[0]+"sync/SurakshitMap/");
+            if(mapFold.exists()) {
+                for (File file : mapFold.listFiles()) {
+                    if (file.isFile()) {
+                        double fileSize = file.length();
+                        mediaMap.put(file.getName(), fileSize);
+                    }
+                }
+            }
+            HashMap<String, ArrayList<Double>> volume=new HashMap<>();
+            HashMap<String,ArrayList<Integer>>  countMedia= new HashMap<>();
             try {
                 Query query = null;
                 String querySt="";
@@ -92,6 +133,29 @@ public class influx {
                         if(result==null || result.getSeries()==null)
                             continue;
                         for (QueryResult.Series series : result.getSeries()) {
+
+
+                            contactMap = new HashMap<>();
+                            File contFold = new File(args[0]+"/sync/pgpKey/");
+                            if(contFold.exists()) {
+                                for (File file : contFold.listFiles()) {
+                                    String f = file.getName();
+                                    System.out.println("file name = " + f);
+                                    String[] name = f.split("_", 2);
+                                    if (Character.isDigit(name[1].charAt(0))) {
+                                        String fh = name[1].substring(0, 10);
+                                        contactMap.put(fh, 1);
+                                    }
+
+
+                                }
+                            }
+                            for (Map.Entry<String,Integer> entry: contactMap.entrySet() )
+                            {
+                                System.out.println(entry.getKey()+" "+entry.getValue());
+                            }
+
+                            //Thread.sleep(20000);
 
 
                             for (List<Object> data : series.getValues()) {
@@ -119,6 +183,76 @@ public class influx {
                                     pi.setPosLatitude((double)data.get(4));
                                     pi.setPosLongitude((double)data.get(5));
                                     map.get((String) data.get(3)).add(pi);
+                                    String mediaName=((String) data.get(6));
+                                    String[] nameofMap = ((String) data.get(6)).split("_",3);
+                                    int cfg=0;
+                                    if(contactMap.get(nameofMap[1])!=null) {
+                                        if (contactMap.get(nameofMap[1]) == 1) {
+                                            cfg++;
+                                            if (volume.get(nameofMap[1]) == null) {
+                                                ArrayList<Double> tempList = new ArrayList<>();
+                                                tempList.add((double) 0);
+                                                tempList.add((double) 0);
+                                                tempList.add((double) 0);
+                                                tempList.add((double) 0);
+                                                volume.put(nameofMap[1], tempList);
+                                            }
+                                            ArrayList<Double> currentSize = volume.get(nameofMap[1]);
+                                            Double xc = currentSize.get(3);
+                                            xc = currentSize.get(3) + mediaMap.get(mediaName);
+                                            currentSize.add(3, xc);
+                                            volume.put(nameofMap[1], currentSize);
+                                            if (countMedia.get(nameofMap[1]) == null) {
+                                                ArrayList<Integer> tempList = new ArrayList<>();
+                                                tempList.add(0);
+                                                tempList.add(0);
+                                                tempList.add(0);
+                                                tempList.add(0);
+                                                countMedia.put(nameofMap[1], tempList);
+                                            }
+                                            ArrayList<Integer> counter = countMedia.get(nameofMap[1]);
+                                            int xy = counter.get(3);
+                                            xy = xy + 1;
+                                            counter.add(3, xy);
+                                            countMedia.put(nameofMap[1], counter);
+                                        }
+                                    }
+                                    if(cfg==0)
+                                    {
+                                        nameofMap[1]= nameofMap[1].substring(1,nameofMap[1].length());
+                                        if(contactMap.get(nameofMap[1])!=null) {
+                                            if (contactMap.get(nameofMap[1]) == 1) {
+                                                cfg++;
+                                                if (volume.get(nameofMap[1]) == null) {
+                                                    ArrayList<Double> tempList = new ArrayList<>();
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    volume.put(nameofMap[1], tempList);
+                                                }
+                                                ArrayList<Double> currentSize = volume.get(nameofMap[1]);
+                                                Double xc = currentSize.get(3);
+                                                xc = currentSize.get(3) + mediaMap.get(mediaName);
+                                                currentSize.add(3, xc);
+                                                volume.put(nameofMap[1], currentSize);
+                                                if (countMedia.get(nameofMap[1]) == null) {
+                                                    ArrayList<Integer> tempList = new ArrayList<>();
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    countMedia.put(nameofMap[1], tempList);
+                                                }
+                                                ArrayList<Integer> counter = countMedia.get(nameofMap[1]);
+                                                int xy = counter.get(3);
+                                                xy = xy + 1;
+                                                counter.add(3, xy);
+                                                countMedia.put(nameofMap[1], counter);
+
+                                            }
+                                        }
+                                    }
                                 } else if ((data.get(3).equals(VIDEO) || data.get(3).equals(IMAGE) || data.get(3).equals(AUDIO) || data.get(3).equals(""))) {
                                     //System.out.print(data.get(4) + " " + data.get(5));
                                    // msg = msg + data.get(3) + "%" + data.get(4) + "%" + data.get(5) + "%" + data.get(6) + "\n";
@@ -137,6 +271,90 @@ public class influx {
                                        video.setSecond((String)data.get(13));
                                        videoArrayList.add(video);
 
+                                        String mediaName=((String) data.get(6));
+                                        String[] nameofMap = ((String) data.get(6)).split("_",3);
+                                        int cfg=0;
+                                        if(contactMap.get(nameofMap[1])!=null) {
+                                            if (contactMap.get(nameofMap[1]) == 1) {
+                                                cfg++;
+                                                if (volume.get(nameofMap[1]) == null) {
+                                                    ArrayList<Double> tempList = new ArrayList<>();
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    volume.put(nameofMap[1], tempList);
+                                                }
+
+                                                ArrayList<Double> currentSize = volume.get(nameofMap[1]);
+                                                try {
+                                                    Double xc = currentSize.get(0);
+                                                    xc = currentSize.get(0) + mediaMap.get(mediaName);
+                                                    currentSize.add(0, xc);
+                                                    volume.put(nameofMap[1], currentSize);
+                                                }
+                                                catch (Exception e){System.out.println("Ooopps");}
+
+                                                if (countMedia.get(nameofMap[1]) == null) {
+                                                    ArrayList<Integer> tempList = new ArrayList<>();
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    countMedia.put(nameofMap[1], tempList);
+                                                }
+                                                try {
+                                                    ArrayList<Integer> counter = countMedia.get(nameofMap[1]);
+                                                    int xy = counter.get(0);
+                                                    xy = xy + 1;
+                                                    counter.add(0, xy);
+                                                    countMedia.put(nameofMap[1], counter);
+                                                }
+                                                catch (Exception e){System.out.println("heyeyey");}
+
+                                            }
+                                        }
+                                        if(cfg==0)
+                                        {
+                                            nameofMap[1]= nameofMap[1].substring(1,nameofMap[1].length());
+                                            if(contactMap.get(nameofMap[1])!=null) {
+                                                if (contactMap.get(nameofMap[1]) == 1) {
+                                                    cfg++;
+                                                    if (volume.get(nameofMap[1]) == null) {
+                                                        ArrayList<Double> tempList = new ArrayList<>();
+                                                        tempList.add((double) 0);
+                                                        tempList.add((double) 0);
+                                                        tempList.add((double) 0);
+                                                        tempList.add((double) 0);
+                                                        volume.put(nameofMap[1], tempList);
+                                                    }
+                                                    ArrayList<Double> currentSize = volume.get(nameofMap[1]);
+                                                    try {
+                                                        Double xc = currentSize.get(0);
+                                                        xc = currentSize.get(0) + mediaMap.get(mediaName);
+                                                        currentSize.add(0, xc);
+                                                        volume.put(nameofMap[1], currentSize);
+                                                    }catch (Exception e){System.out.println("ooppp");}
+                                                    if (countMedia.get(nameofMap[1]) == null) {
+                                                        ArrayList<Integer> tempList = new ArrayList<>();
+                                                        tempList.add(0);
+                                                        tempList.add(0);
+                                                        tempList.add(0);
+                                                        tempList.add(0);
+                                                        countMedia.put(nameofMap[1], tempList);
+                                                    }
+                                                    ArrayList<Integer> counter = countMedia.get(nameofMap[1]);
+                                                    try {
+                                                        int xy = counter.get(0);
+                                                        xy = xy + 1;
+                                                        counter.add(0, xy);
+                                                        countMedia.put(nameofMap[1], counter);
+                                                    }catch (Exception e){System.out.println("heyehey");}
+
+                                                }
+                                            }
+                                        }
+
                                     }
                                     else if((data.get(3).equals(IMAGE)))
                                     {
@@ -151,6 +369,87 @@ public class influx {
                                         image.setMinute((String)data.get(12));
                                         image.setSecond((String)data.get(13));
                                         imageArrayList.add(image);
+                                        String mediaName=((String) data.get(6));
+                                        String[] nameofMap = ((String) data.get(6)).split("_",3);
+                                        int cfg=0;
+                                        if(contactMap.get(nameofMap[1])!=null) {
+                                            if (contactMap.get(nameofMap[1]) == 1) {
+                                                cfg++;
+                                                if (volume.get(nameofMap[1]) == null) {
+                                                    ArrayList<Double> tempList = new ArrayList<>();
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    volume.put(nameofMap[1], tempList);
+                                                }
+                                                ArrayList<Double> currentSize = volume.get(nameofMap[1]);
+                                                try {
+                                                    Double xc = currentSize.get(2);
+                                                    xc = currentSize.get(2) + mediaMap.get(mediaName);
+                                                    currentSize.add(2, xc);
+                                                    volume.put(nameofMap[1], currentSize);
+                                                }catch (Exception e){}
+                                                if (countMedia.get(nameofMap[1]) == null) {
+                                                    ArrayList<Integer> tempList = new ArrayList<>();
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    countMedia.put(nameofMap[1], tempList);
+                                                }
+                                                try {
+                                                    ArrayList<Integer> counter = countMedia.get(nameofMap[1]);
+                                                    int xy = counter.get(2);
+                                                    xy = xy + 1;
+                                                    counter.add(2, xy);
+                                                    countMedia.put(nameofMap[1], counter);
+                                                }catch (Exception e){}
+
+                                            }
+                                        }
+                                        if(cfg==0)
+                                        {
+                                            nameofMap[1]= nameofMap[1].substring(1,nameofMap[1].length());
+                                            if(contactMap.get(nameofMap[1])!=null) {
+                                                if (contactMap.get(nameofMap[1]) == 1) {
+                                                    cfg++;
+                                                    if (volume.get(nameofMap[1]) == null) {
+                                                        ArrayList<Double> tempList = new ArrayList<>();
+                                                        tempList.add((double) 0);
+                                                        tempList.add((double) 0);
+                                                        tempList.add((double) 0);
+                                                        tempList.add((double) 0);
+                                                        volume.put(nameofMap[1], tempList);
+                                                    }
+                                                    ArrayList<Double> currentSize = volume.get(nameofMap[1]);
+                                                    try {
+                                                        Double xc = currentSize.get(2);
+                                                        xc = currentSize.get(2) + mediaMap.get(mediaName);
+                                                        currentSize.add(2, xc);
+                                                        volume.put(nameofMap[1], currentSize);
+                                                    }
+                                                    catch (Exception e){}
+                                                    if (countMedia.get(nameofMap[1]) == null) {
+                                                        ArrayList<Integer> tempList = new ArrayList<>();
+                                                        tempList.add(0);
+                                                        tempList.add(0);
+                                                        tempList.add(0);
+                                                        tempList.add(0);
+                                                        countMedia.put(nameofMap[1], tempList);
+                                                    }
+                                                    try {
+                                                        ArrayList<Integer> counter = countMedia.get(nameofMap[1]);
+                                                        int xy = counter.get(2);
+                                                        xy = xy + 1;
+                                                        counter.add(2, xy);
+                                                        countMedia.put(nameofMap[1], counter);
+                                                    }catch (Exception e){}
+
+                                                }
+                                            }
+                                        }
+
                                     }
 
                                     else if((data.get(3).equals(AUDIO)))
@@ -166,6 +465,86 @@ public class influx {
                                         audio.setMinute((String)data.get(12));
                                         audio.setSecond((String)data.get(13));
                                         audioArrayList.add(audio);
+
+
+                                        String mediaName=((String) data.get(6));
+                                        String[] nameofMap = ((String) data.get(6)).split("_",3);
+                                        int cfg=0;
+                                        if(contactMap.get(nameofMap[1])!=null && contactMap.get(nameofMap[1])==1) {
+                                            cfg++;
+                                            if(volume.get(nameofMap[1])==null) {
+                                                ArrayList<Double > tempList = new ArrayList<>();
+                                                tempList.add((double) 0);
+                                                tempList.add((double) 0);
+                                                tempList.add((double) 0);
+                                                tempList.add((double) 0);
+                                                volume.put(nameofMap[1], tempList);
+                                            }
+                                            ArrayList<Double> currentSize = volume.get(nameofMap[1]);
+                                            try {
+                                                Double xc = currentSize.get(1);
+                                                xc = currentSize.get(1) + mediaMap.get(mediaName);
+                                                currentSize.add(1, xc);
+                                                volume.put(nameofMap[1], currentSize);
+                                            }catch (Exception e){}
+                                            if(countMedia.get(nameofMap[1])==null)
+                                            {
+                                                ArrayList<Integer > tempList = new ArrayList<>();
+                                                tempList.add(0);
+                                                tempList.add(0);
+                                                tempList.add(0);
+                                                tempList.add(0);
+                                                countMedia.put(nameofMap[1], tempList);
+                                            }
+                                            try {
+                                                ArrayList<Integer> counter = countMedia.get(nameofMap[1]);
+                                                int xy = counter.get(1);
+                                                xy = xy + 1;
+                                                counter.add(1, xy);
+                                                countMedia.put(nameofMap[1], counter);
+                                            }catch (Exception e){}
+
+                                        }
+                                        if(cfg==0)
+                                        {
+                                            nameofMap[1]= nameofMap[1].substring(1,nameofMap[1].length());
+                                            if(contactMap.get(nameofMap[1])!=null && contactMap.get(nameofMap[1])==1) {
+                                                cfg++;
+                                                if(volume.get(nameofMap[1])==null) {
+                                                    ArrayList<Double > tempList = new ArrayList<>();
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    tempList.add((double) 0);
+                                                    volume.put(nameofMap[1], tempList);
+                                                }
+                                                ArrayList<Double> currentSize = volume.get(nameofMap[1]);
+                                                try {
+                                                    Double xc = currentSize.get(1);
+                                                    xc = currentSize.get(1) + mediaMap.get(mediaName);
+                                                    currentSize.add(1, xc);
+                                                    volume.put(nameofMap[1], currentSize);
+                                                }catch (Exception e){}
+                                                if(countMedia.get(nameofMap[1])==null)
+                                                {
+                                                    ArrayList<Integer > tempList = new ArrayList<>();
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    tempList.add(0);
+                                                    countMedia.put(nameofMap[1], tempList);
+                                                }
+                                                ArrayList <Integer> counter = countMedia.get(nameofMap[1]);
+                                                try {
+                                                    int xy = counter.get(1);
+                                                    xy = xy + 1;
+                                                    counter.add(1, xy);
+                                                    countMedia.put(nameofMap[1], counter);
+                                                }catch (Exception e){}
+
+                                            }
+                                        }
+
                                     }
                                     else if((data.get(3)).equals(""))
                                     {
@@ -180,11 +559,15 @@ public class influx {
                                         text.setMinute((String)data.get(12));
                                         text.setSecond((String)data.get(13));
                                         textArrayList.add(text);
+
+
                                     }
 
 
                                 }
                             }
+
+
 
                             List<KmlObject> kmlObjects = new ArrayList<>();
                             for (String str : map.keySet()) {
@@ -199,6 +582,20 @@ public class influx {
                             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file,true));
                             bufferedWriter.write(date+"%"+version+"\n");
                             bufferedWriter.close();
+                            File stat_file = new File(directory+"Statistics.csv");
+                            String stat = "*****************************************************************"+"\n"+"\n"+"\n";
+                            for (Map.Entry<String,ArrayList<Double>> entry: volume.entrySet())
+                            {
+                                String name = entry.getKey();
+                                String vid = Double.toString(volume.get(name).get(0))+"_"+ Integer.toString(countMedia.get(name).get(0));
+                                String aud= Double.toString(volume.get(name).get(1))+"_"+ Integer.toString(countMedia.get(name).get(1));
+                                String img = Double.toString(volume.get(name).get(2))+"_"+ Integer.toString(countMedia.get(name).get(2));
+                                String mm = Double.toString(volume.get(name).get(3))+"_"+ Integer.toString(countMedia.get(name).get(3));
+                                stat =stat+date+","+name+","+vid+","+aud+","+img+","+mm+"\n";
+                            }
+                            BufferedWriter bufferedWriter1 = new BufferedWriter(new FileWriter(stat_file,true));
+                            bufferedWriter1.write(stat);
+                            bufferedWriter1.close();
                             //System.out.println("obtained KML objects  ");
                             MergingDecisionPolicy mergingDecisionPolicy = new MergingDecisionPolicy(MergingDecisionPolicy.DISTANCE_THRESHOLD_POLICY
                                     , 40, 0);
@@ -213,17 +610,8 @@ public class influx {
             }catch (Exception e) {
                 e.printStackTrace();
             }
-//            File file = new File(directory + "media.txt");
-//            PrintWriter printWriter = new PrintWriter(file);
-//            printWriter.write("");
-//            printWriter.close();
-//            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
 //
-//            bufferedWriter.write(msg);
-//            bufferedWriter.close();
-//            System.out.println("hi I reached there");
-
-            Thread.sleep(180000);
+            Thread.sleep(900000);
 
         }
 
