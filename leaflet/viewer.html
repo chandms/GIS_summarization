@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Media Viewer</title>
+</head>
+<body style="background-color: rgb( 36, 219, 161 );">
+<h1 style="background-color: DodgerBlue; text-align: center;border:2px solid Tomato;"> NIT Durgapur </h1>
+<h2 style="background-color: Orange; text-align: center;"> GIS_Viewer </h1>
+<h1 style="background-color: rgb(238, 130, 238); text-align: center;"> Media </h1>
+<img id="the_image" src="" class="center">
+
+<video id="the_video" width="400" controls >
+  <source id="the_video_src" src="" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+
+
+</body>
+
+<script type="text/javascript">
+	function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+}
+
+document.getElementById("the_image").hidden = true;
+document.getElementById("the_video").hidden = true;
+
+var file_name = findGetParameter("file_name");
+console.log(file_name);
+
+if(file_name.endsWith('jpeg')){
+	document.getElementById("the_image").src = './sync/SurakshitImages/'+file_name;		
+	document.getElementById("the_image").hidden = false;
+}
+
+if(file_name.endsWith('mp4')){
+	document.getElementById("the_video_src").src = './sync/SurakshitVideos/'+file_name;		
+	document.getElementById("the_video").hidden = false;
+}
+
+
+if(file_name.endsWith('3gp')){
+	document.getElementById("the_video_src").src = './sync/SurakshitAudio/'+file_name;		
+	document.getElementById("the_video").hidden = false;
+}
+
+if(file_name.endsWith('png')){
+
+  document.getElementById("the_image").src = './sync/SurakshitMap/'+file_name;   
+  document.getElementById("the_image").hidden = false;
+
+}
+
+</script>
+</html>

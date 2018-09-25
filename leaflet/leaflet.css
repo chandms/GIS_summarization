@@ -391,6 +391,9 @@
 .leaflet-default-icon-path {
 	background-image: url(images/marker-icon.png);
 	}
+.leaflet-merge-icon-path {
+	background-image: url(images/marker2.png);
+	}
 
 
 /* attribution and scale controls */

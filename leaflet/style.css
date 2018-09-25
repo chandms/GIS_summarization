@@ -1,11 +1,73 @@
 body {
     padding: 0;
     margin: 0;
+    
 }
-html, body, #map {
-    height: 100%;
-    width: 100vw;
+
+
+.Summary_Person{
+    height:54px;
+    display: block;
+    margin-top:200px;
+
 }
+
+.head_sec{
+    text-align: center;
+    color: black;
+}
+.total:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.side{
+    float: left;
+    padding: 10px;
+    border: 2px solid lightpink;
+
+}
+.id1 {
+  width: 45%;
+}
+
+.id2 {
+  width: 25%;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+#map {
+    height: 80vh;
+    margin-left: auto;
+    /*swidth: 60vw;*/
+    border: 5px solid lightpink;
+}
+.count {
+    display: flex;
+    /*float: left;*/
+    background: #1a1a1a;
+    color: #e1e1e1;
+    border: 1px solid #e1e1e1;
+    padding: 1em;
+}
+
+.dropbtn {
+    background-color: lightpink;
+    color: red;
+    margin-right: auto;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.dropdown:hover .dropbtn {
+    background-color: blue;
+}
+
 
 /* map */
 .leaflet-tooltip {
