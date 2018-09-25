@@ -1,0 +1,4 @@
+class java.lang.NullPointerException: null
+bishakh.psync.Controller.findMissingFiles(Controller.java:240)
+bishakh.psync.Controller$ControllerThread.run(Controller.java:466)
+java.lang.Thread.run(Thread.java:745)

@@ -7,7 +7,7 @@ from xml.dom.minidom import Node
 from xml.dom import minidom
 import collections
 from influxdb import SeriesHelper
-from lxml import etree
+#from lxml import etree
 from io import StringIO
 import sys
 from xml.dom.minidom import parseString
@@ -139,6 +139,32 @@ def insertIntoInflux(kmlfile):
             else:
                 temp['map'].append(cur_list[1])
             temp['timeStamp'].append(cur_list[0])
+            year=""
+            month=""
+            day=""
+            hour=""
+            minute=""
+            second=""
+            for time_counter in range(len(cur_list[0])):
+                if(time_counter<4):
+                    year=year+cur_list[0][time_counter]
+                elif time_counter<6:
+                    month=month+cur_list[0][time_counter]
+                elif time_counter<8:
+                    day=day+cur_list[0][time_counter]
+                elif time_counter<10:
+                    hour=hour+cur_list[0][time_counter]
+                elif time_counter<12:
+                    minute= minute+cur_list[0][time_counter]
+                else:
+                    second=second+cur_list[0][time_counter]
+            temp['year'].append(year)
+            temp['month'].append(month)
+            temp['day'].append(day)
+            temp['hour'].append(hour)
+            temp['minute'].append(minute)
+            temp['second'].append(second)
+
             st = cur_list[3].split('_')
             latlon = cur_list[4].split('_')
             temp['posLat'].append(float(latlon[0]))
@@ -162,6 +188,9 @@ def insertIntoInflux(kmlfile):
         for j in range(l):
             myDict[kk].append(temp[kk][j])
 
+    for kk,vt in myDict.items():
+        print(kk,"->",vt)
+
     fld.append('map')
     fld.append('posLat')
     fld.append('posLong')
@@ -172,6 +201,12 @@ def insertIntoInflux(kmlfile):
     fld.append('text')
     fld.append('timeStamp')
     fld.append('Datanametotal')
+    fld.append('year')
+    fld.append('month')
+    fld.append('day')
+    fld.append('hour')
+    fld.append('minute')
+    fld.append('second')
 
     rm = []
     for kk, vv in myDict.items():

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<styleUrl>#1</styleUrl>
+<name>987b77c20672edf0</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.28989955627617,23.554853418305242,0.0 87.29098543617448,23.55490609974329,0.0 87.29095518882349,23.554027148777323,0.0 87.29027159869258,23.55336169303213,0.0 87.28979671528299,23.55413528501768,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#2</styleUrl>
+<name>ee46d9ea267ae598</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29000909439833,23.555599303475134,0.0 87.29016866354078,23.55413656856838,0.0 87.28743721527877,23.554558182064383,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<ExtendedData>
+<Data name="20180825155903"><value>20180825161012-map-ee46d9ea267ae598-c5754a943f47e06ef4b1e5d8c8642bc5_9876543211_volunteer_50_e8c1be62b5c9ae2f.png-23.54731437_87.29240653</value></Data>
+<Data name="20180825155849"><value>20180825155903-text-none-Almost 50 injured-23.547256_87.2925283</value></Data>
+<Data name="20180825155833"><value>20180825155835-text-none-Building collapsed-23.547256_87.2925283</value></Data>
+<Data name="source"><value>20180825155833-map-987b77c20672edf0-c5754a943f47e06ef4b1e5d8c8642bc5_9876543211_volunteer_50_2718352e234b45ff.png-23.547256_87.2925283</value></Data>
+<Data name="total"><value>6</value></Data>
+<Data name="20180825161012"><value>20180825161034-text-none-Bear loose in campus.-23.54731437_87.29240653</value></Data>
+<Data name="20180825155835"><value>20180825155849-text-none-Help Needed..... -23.547256_87.2925283</value></Data>
+</ExtendedData>
+<Style id='1'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='2'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+</Document>
+</kml>

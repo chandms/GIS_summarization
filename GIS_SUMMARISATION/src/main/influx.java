@@ -136,6 +136,7 @@ public class influx {
 
 
                             contactMap = new HashMap<>();
+                            contactMap.clear();
                             File contFold = new File(args[0]+"/sync/pgpKey/");
                             if(contFold.exists()) {
                                 for (File file : contFold.listFiles()) {
@@ -169,6 +170,9 @@ public class influx {
                                         data.get(3).equals(VIDEO) || data.get(3).equals(AUDIO))) {
                                     if (!map.containsKey((String) data.get(3)))
                                         map.put((String) data.get(3), new ArrayList<>());
+
+
+                                    /////  for maps index chosen 3
                                     point pi = new point();
                                     pi.setLatitude((double) data.get(1));
                                     pi.setLongitute((double) data.get(2));
@@ -259,6 +263,8 @@ public class influx {
 
                                     if ((data.get(3).equals(VIDEO)))
                                     {
+
+                                        ////// video index is chosen as 0
                                        Video video = new Video();
                                        video.setLatitude((double)data.get(4));
                                        video.setLongitude((double) data.get(5));
@@ -358,6 +364,7 @@ public class influx {
                                     }
                                     else if((data.get(3).equals(IMAGE)))
                                     {
+                                        ///// image index = 2 for image
                                         Image image = new Image();
                                         image.setLatitude((double)data.get(4));
                                         image.setLongitude((double)data.get(5));
@@ -454,6 +461,8 @@ public class influx {
 
                                     else if((data.get(3).equals(AUDIO)))
                                     {
+
+                                        //  index chosen =1 for audio
                                         Audio audio = new Audio();
                                         audio.setLatitude((double)data.get(4));
                                         audio.setLongitude((double)data.get(5));
@@ -611,7 +620,7 @@ public class influx {
                 e.printStackTrace();
             }
 //
-            Thread.sleep(900000);
+            Thread.sleep(100000);
 
         }
 
