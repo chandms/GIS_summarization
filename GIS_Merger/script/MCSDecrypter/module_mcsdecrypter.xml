@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_mcsdecrypter" default="compile.module.mcsdecrypter">
+  <dirname property="module.mcsdecrypter.basedir" file="${ant.file.module_mcsdecrypter}"/>
+  
+  <property name="module.jdk.home.mcsdecrypter" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.mcsdecrypter" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.mcsdecrypter" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.mcsdecrypter" value="-encoding UTF-8 -source 7 -target 7 ${compiler.args}"/>
+  
+  <property name="mcsdecrypter.output.dir" value="${module.mcsdecrypter.basedir}/out/production/MCSDecrypter"/>
+  <property name="mcsdecrypter.testoutput.dir" value="${module.mcsdecrypter.basedir}/out/test/MCSDecrypter"/>
+  
+  <path id="mcsdecrypter.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="mcsdecrypter.module.production.classpath">
+    <path refid="${module.jdk.classpath.mcsdecrypter}"/>
+    <pathelement location="${basedir}/bcprov-jdk15on-1.59.jar"/>
+    <pathelement location="${basedir}/bcpg-jdk15on-1.59.jar"/>
+  </path>
+  
+  <path id="mcsdecrypter.runtime.production.module.classpath">
+    <pathelement location="${mcsdecrypter.output.dir}"/>
+    <pathelement location="${basedir}/bcprov-jdk15on-1.59.jar"/>
+    <pathelement location="${basedir}/bcpg-jdk15on-1.59.jar"/>
+  </path>
+  
+  <path id="mcsdecrypter.module.classpath">
+    <path refid="${module.jdk.classpath.mcsdecrypter}"/>
+    <pathelement location="${mcsdecrypter.output.dir}"/>
+    <pathelement location="${basedir}/bcprov-jdk15on-1.59.jar"/>
+    <pathelement location="${basedir}/bcpg-jdk15on-1.59.jar"/>
+  </path>
+  
+  <path id="mcsdecrypter.runtime.module.classpath">
+    <pathelement location="${mcsdecrypter.testoutput.dir}"/>
+    <pathelement location="${mcsdecrypter.output.dir}"/>
+    <pathelement location="${basedir}/bcprov-jdk15on-1.59.jar"/>
+    <pathelement location="${basedir}/bcpg-jdk15on-1.59.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.mcsdecrypter">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.mcsdecrypter">
+    <patternset refid="excluded.from.module.mcsdecrypter"/>
+  </patternset>
+  
+  <path id="mcsdecrypter.module.sourcepath">
+    <dirset dir="${module.mcsdecrypter.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.mcsdecrypter" depends="compile.module.mcsdecrypter.production,compile.module.mcsdecrypter.tests" description="Compile module MCSDecrypter"/>
+  
+  <target name="compile.module.mcsdecrypter.production" depends="register.custom.compilers" description="Compile module MCSDecrypter; production classes">
+    <mkdir dir="${mcsdecrypter.output.dir}"/>
+    <javac2 destdir="${mcsdecrypter.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.mcsdecrypter}/javac">
+      <compilerarg line="${compiler.args.mcsdecrypter}"/>
+      <bootclasspath refid="mcsdecrypter.module.bootclasspath"/>
+      <classpath refid="mcsdecrypter.module.production.classpath"/>
+      <src refid="mcsdecrypter.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.mcsdecrypter"/>
+    </javac2>
+    
+    <copy todir="${mcsdecrypter.output.dir}">
+      <fileset dir="${module.mcsdecrypter.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.mcsdecrypter.tests" depends="register.custom.compilers,compile.module.mcsdecrypter.production" description="compile module MCSDecrypter; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.mcsdecrypter" description="cleanup module">
+    <delete dir="${mcsdecrypter.output.dir}"/>
+    <delete dir="${mcsdecrypter.testoutput.dir}"/>
+  </target>
+</project>

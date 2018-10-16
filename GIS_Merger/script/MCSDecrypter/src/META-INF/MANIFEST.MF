@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: bcprov-jdk15on-1.59.jar bcpg-jdk15on-1.59.jar commons-io-2
+ .6.jar
+Main-Class: decrypter
+

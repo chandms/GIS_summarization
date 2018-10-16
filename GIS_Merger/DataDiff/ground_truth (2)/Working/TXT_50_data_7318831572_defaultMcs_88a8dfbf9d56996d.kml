@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<styleUrl>#1</styleUrl>
+<description><![CDATA[Hall 6, Aurobindo Hall of Residence]]></description>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.28858012799355,23.5485598146592,0.0 87.28958392470258,23.54842561865543,0.0 87.28960563543808,23.548641106907624,0.0 87.28855364703611,23.548813752784767,0.0 87.28858012799355,23.5485598146592,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<ExtendedData>
+<Data name="Time Stamp"><value>20181005161516</value></Data>
+<Data name="Destination"><value>defaultMcs</value></Data>
+<Data name="Group Type"><value>data</value></Data>
+<Data name="Lat Long"><value>23.54869689_87.28949057</value></Data>
+<Data name="Group ID"><value>1</value></Data>
+<Data name="Source"><value>7318831572</value></Data>
+<Data name="KML Type"><value>Polygon</value></Data>
+<Data name="Media Type"><value>TXT</value></Data>
+<Data name="Zoom"><value>16.902763126190504</value></Data>
+<Data name="Priority"><value>50</value></Data>
+</ExtendedData>
+<Style id='1'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+</Document>
+</kml>

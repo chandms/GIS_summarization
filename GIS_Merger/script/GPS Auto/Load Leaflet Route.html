@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://turistforeningen.github.io/leaflet-routing/examples/osm.html -->
+<html>
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Load Leaflet Route</title>
+    <link rel="stylesheet" href="./Load_Leaflet_Route_files/leaflet.css">
+    <!--[if lte IE 8]><link rel="stylesheet" href="libs/leaflet/leaflet.ie.css" /><![endif]-->
+
+    <link rel="stylesheet" href="./Load_Leaflet_Route_files/gh-fork-ribbon.css">
+    <!--[if IE]><link rel="stylesheet" href="http://simonwhitaker.github.io/github-fork-ribbon-css/gh-fork-ribbon.ie.css" /><![endif]-->
+
+    <link rel="stylesheet" href="./Load_Leaflet_Route_files/app.css">
+    <script type="text/javascript" async="" src="./Load_Leaflet_Route_files/ga.js"></script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38558206-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+
+  <body class="">
+    <div id="map" class="leaflet-container leaflet-fade-anim" tabindex="0">
+      <div class="leaflet-map-pane" style="transform: translate3d(-160px, -344px, 0px);">
+        <div class="leaflet-tile-pane">
+          <div class="leaflet-layer" style="z-index: 3;">
+            <div class="leaflet-tile-container leaflet-zoom-animated"></div>
+            <div class="leaflet-tile-container leaflet-zoom-animated"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/577.png" style="height: 256px; width: 256px; left: 523px; top: 361px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/577(1).png"
+              style="height: 256px; width: 256px; left: 779px; top: 361px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/578.png" style="height: 256px; width: 256px; left: 523px; top: 617px;"><img class="leaflet-tile leaflet-tile-loaded"
+              src="./Load_Leaflet_Route_files/578(1).png" style="height: 256px; width: 256px; left: 779px; top: 617px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/577(2).png" style="height: 256px; width: 256px; left: 1035px; top: 361px;">
+              <img
+              class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/579.png" style="height: 256px; width: 256px; left: 779px; top: 873px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/576.png" style="height: 256px; width: 256px; left: 779px; top: 105px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/579(1).png"
+                style="height: 256px; width: 256px; left: 523px; top: 873px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/576(1).png" style="height: 256px; width: 256px; left: 523px; top: 105px;"><img class="leaflet-tile leaflet-tile-loaded"
+                src="./Load_Leaflet_Route_files/578(2).png" style="height: 256px; width: 256px; left: 267px; top: 617px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/577(3).png" style="height: 256px; width: 256px; left: 267px; top: 361px;">
+                <img
+                class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/578(3).png" style="height: 256px; width: 256px; left: 1035px; top: 617px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/576(2).png" style="height: 256px; width: 256px; left: 267px; top: 105px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/576(3).png"
+                  style="height: 256px; width: 256px; left: 1035px; top: 105px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/579(2).png" style="height: 256px; width: 256px; left: 1035px; top: 873px;"><img class="leaflet-tile leaflet-tile-loaded"
+                  src="./Load_Leaflet_Route_files/579(3).png" style="height: 256px; width: 256px; left: 267px; top: 873px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/578(4).png" style="height: 256px; width: 256px; left: 1291px; top: 617px;">
+                  <img
+                  class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/577(4).png" style="height: 256px; width: 256px; left: 1291px; top: 361px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/577(5).png" style="height: 256px; width: 256px; left: 11px; top: 361px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/578(5).png"
+                    style="height: 256px; width: 256px; left: 11px; top: 617px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/576(4).png" style="height: 256px; width: 256px; left: 1291px; top: 105px;"><img class="leaflet-tile leaflet-tile-loaded"
+                    src="./Load_Leaflet_Route_files/579(4).png" style="height: 256px; width: 256px; left: 11px; top: 873px;"><img class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/576(5).png" style="height: 256px; width: 256px; left: 11px; top: 105px;">
+                    <img
+                    class="leaflet-tile leaflet-tile-loaded" src="./Load_Leaflet_Route_files/579(5).png" style="height: 256px; width: 256px; left: 1291px; top: 873px;"></div>
+          </div>
+        </div>
+        <div class="leaflet-objects-pane">
+          <div class="leaflet-shadow-pane"><img src="./Load_Leaflet_Route_files/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(182px, 484px, 0px); opacity: 1;">
+            <img
+            src="./Load_Leaflet_Route_files/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(880px, 393px, 0px);"><img src="./Load_Leaflet_Route_files/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(922px, 411px, 0px);"><img src="./Load_Leaflet_Route_files/marker-shadow.png"
+              class="leaflet-marker-shadow leaflet-zoom-animated" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(900px, 406px, 0px);"><img src="./Load_Leaflet_Route_files/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated"
+              style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(878px, 395px, 0px);"><img src="./Load_Leaflet_Route_files/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(1061px, 380px, 0px);">
+              <img
+              src="./Load_Leaflet_Route_files/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(1047px, 379px, 0px);"><img src="./Load_Leaflet_Route_files/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(1038px, 386px, 0px);"><img src="./Load_Leaflet_Route_files/marker-shadow.png"
+                class="leaflet-marker-shadow leaflet-zoom-animated" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(1026px, 394px, 0px);"><img src="./Load_Leaflet_Route_files/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated"
+                style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(1013px, 405px, 0px);"><img src="./Load_Leaflet_Route_files/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(1186px, 405px, 0px);">
+                <img
+                src="./Load_Leaflet_Route_files/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(1155px, 477px, 0px);"></div>
+          <div class="leaflet-overlay-pane">
+            <svg class="leaflet-zoom-animated" width="1985" height="897" viewBox="-185 188 1985 897" style="transform: translate3d(-185px, 188px, 0px);">
+              <g>
+                <path stroke-linejoin="round" stroke-linecap="round" pointer-events="none" stroke="#0033ff" stroke-opacity="0" stroke-width="5" fill="none" d="M937 431L937 431"></path>
+              </g>
+              <g>
+                <path stroke-linejoin="round" stroke-linecap="round" pointer-events="none" stroke="#0033ff" stroke-opacity="0" stroke-width="5" fill="none" d="M937 431L937 431"></path>
+              </g>
+              <g>
+                <path stroke-linejoin="round" stroke-linecap="round" pointer-events="none" stroke="#0033ff" stroke-opacity="0.2" stroke-width="5" fill="none" d="M1155 477L182 484"></path>
+              </g>
+            </svg>
+          </div>
+          <div class="leaflet-marker-pane">
+            <div class="leaflet-marker-icon line-mouse-marker leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Drag to create a new waypoint" tabindex="0" style="margin-left: -5px; margin-top: -5px; width: 10px; height: 10px; opacity: 0; transform: translate3d(937px, 431px, 0px); z-index: 2431;"></div><img src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-drag-target" tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(182px, 484px, 0px); z-index: 2484; opacity: 1;">
+            <img
+            src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Waypoint. Drag to move; Click to remove." tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(880px, 393px, 0px); z-index: 393;"><img src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Waypoint. Drag to move; Click to remove." tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(922px, 411px, 0px); z-index: 411;">
+              <img
+              src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Waypoint. Drag to move; Click to remove." tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(900px, 406px, 0px); z-index: 406;"><img src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Waypoint. Drag to move; Click to remove." tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(878px, 395px, 0px); z-index: 395;">
+                <img
+                src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Waypoint. Drag to move; Click to remove." tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(1061px, 380px, 0px); z-index: 380;"><img src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Waypoint. Drag to move; Click to remove." tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(1047px, 379px, 0px); z-index: 379;">
+                  <img
+                  src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Waypoint. Drag to move; Click to remove." tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(1038px, 386px, 0px); z-index: 386;"><img src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Waypoint. Drag to move; Click to remove." tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(1026px, 394px, 0px); z-index: 394;">
+                    <img
+                    src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Waypoint. Drag to move; Click to remove." tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(1013px, 405px, 0px); z-index: 405;"><img src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Waypoint. Drag to move; Click to remove." tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(1186px, 405px, 0px); z-index: 405;">
+                      <img
+                      src="./Load_Leaflet_Route_files/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-clickable leaflet-marker-draggable" title="Waypoint. Drag to move; Click to remove." tabindex="0" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(1155px, 477px, 0px); z-index: 477;"></div>
+          <div class="leaflet-popup-pane"></div>
+        </div>
+      </div>
+      <div class="leaflet-control-container">
+        <div class="leaflet-top leaflet-left">
+          <div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="http://turistforeningen.github.io/leaflet-routing/examples/osm.html#" title="Zoom in">+</a><a class="leaflet-control-zoom-out" href="http://turistforeningen.github.io/leaflet-routing/examples/osm.html#"
+            title="Zoom out">-</a></div>
+          <div class="leaflet-routing leaflet-control"></div>
+        </div>
+        <div class="leaflet-top leaflet-right">
+          <div class="leaflet-control-layers leaflet-control" aria-haspopup="true">
+            <a class="leaflet-control-layers-toggle" href="http://turistforeningen.github.io/leaflet-routing/examples/osm.html#" title="Layers"></a>
+            <form class="leaflet-control-layers-list">
+              <div class="leaflet-control-layers-base">
+                <label>
+                  <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers" checked="checked"><span> Topo (Kartverket)</span></label>
+                <label>
+                  <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers"><span> Landscape (Thunderforest)</span></label>
+                <label>
+                  <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers"><span> OpenStreetMap</span></label>
+              </div>
+              <div class="leaflet-control-layers-separator"></div>
+              <div class="leaflet-control-layers-overlays">
+                <label>
+                  <input type="checkbox" class="leaflet-control-layers-selector"><span> Hiking (Waymarked Trails)</span></label>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="leaflet-bottom leaflet-left"></div>
+        <div class="leaflet-bottom leaflet-right">
+          <div class="leaflet-control-attribution leaflet-control"><a href="http://leafletjs.com/" title="A JS library for interactive maps">Leaflet</a> | data © <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, tiles © <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>            contributors</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./Load_Leaflet_Route_files/jquery-1.9.1.min.js"></script>
+    <script src="./Load_Leaflet_Route_files/leaflet.js"></script>
+    <script src="./Load_Leaflet_Route_files/LineUtil.Snapping.js"></script>
+    <script src="./Load_Leaflet_Route_files/Marker.Snapping.js"></script>
+    <script src="./Load_Leaflet_Route_files/L.Routing.js"></script>
+    <script src="./Load_Leaflet_Route_files/L.Routing.Storage.js"></script>
+    <script src="./Load_Leaflet_Route_files/L.Routing.Draw.js"></script>
+    <script src="./Load_Leaflet_Route_files/L.Routing.Edit.js"></script>
+    <script src="./Load_Leaflet_Route_files/osmtogeojson.js"></script>
+    <script type="text/javascript">
+      var gk, topo, thunderforest, osm, waymarkedtrails;
+
+      gk = 'http://opencache.statkart.no/gatekeeper/gk';
+      topo = L.tileLayer(gk + '/gk.open_gmaps?layers=topo2&zoom={z}&x={x}&y={y}', {
+        maxZoom: 16,
+        attribution: 'tiles &copy; <a href="http://www.statkart.no/">Statens kartverk</a>'
+      });
+
+      thunderforest = new L.TileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: 'tiles &copy; <a target="_blank" href="http://www.thunderforest.com">Thunderforest</a> ' + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>)'
+      });
+
+      osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: 'tiles &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      });
+
+      waymarkedtrails = L.tileLayer('http://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        opacity: 0.5,
+        attribution: 'overlay &copy; <a target="_blank" href="http://hiking.waymarkedtrails.org">Waymarked Trails</a> ' + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>)'
+      });
+
+      map = new L.Map('map', {
+        layers: [osm],
+        center: new L.LatLng(23.568374, 87.298830),
+        zoom: 16
+      });
+
+      L.control.layers({
+        'Topo (Kartverket)': topo,
+        'Landscape (Thunderforest)': thunderforest,
+        'OpenStreetMap': osm
+      }, {
+        'Hiking (Waymarked Trails)': waymarkedtrails
+      }).addTo(map);
+
+      map.attributionControl.addAttribution('data &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors');
+
+      // Snapping Layer
+      snapping = new L.geoJson(null, {
+        style: {
+          opacity: 0,
+          clickable: false
+        }
+      }).addTo(map);
+      map.on('moveend', function() {
+        if (map.getZoom() > 12) {
+          var proxy = 'http://www2.turistforeningen.no/routing.php?url=';
+          var route = 'http://www.openstreetmap.org/api/0.6/map';
+          var params = '&bbox=' + map.getBounds().toBBoxString() + '&1=2';
+          $.get(proxy + route + params).always(function(osm, status) {
+            if (status === 'success' && typeof osm === 'object') {
+              var geojson = osmtogeojson(osm);
+
+              snapping.clearLayers();
+              for (var i = 0; i < geojson.features.length; i++) {
+                var feat = geojson.features[i];
+                if (feat.geometry.type === 'LineString' && feat.properties.tags.highway) {
+                  snapping.addData(geojson.features[i]);
+                }
+              }
+            } else {
+              console.log('Could not load snapping data');
+            }
+          });
+        } else {
+          snapping.clearLayers();
+        }
+      });
+      map.fire('moveend');
+
+      // OSM Router
+      router = function(m1, m2, cb) {
+        var proxy = 'http://www2.turistforeningen.no/routing.php?url=';
+        var route = 'http://www.yournavigation.org/api/1.0/gosmore.php&format=geojson&v=foot&fast=1&layer=mapnik';
+        var params = '&flat=' + m1.lat + '&flon=' + m1.lng + '&tlat=' + m2.lat + '&tlon=' + m2.lng;
+        console.log(m2.lat + ',' + m2.lng);
+        $.getJSON(proxy + route + params, function(geojson, status) {
+          if (!geojson || !geojson.coordinates || geojson.coordinates.length === 0) {
+            if (typeof console.log === 'function') {
+              console.log('OSM router failed', geojson);
+            }
+            return cb(new Error());
+          }
+          return cb(null, L.GeoJSON.geometryToLayer(geojson));
+        });
+      }
+
+      routing = new L.Routing({
+        position: 'topleft',
+        routing: {
+          router: router
+        },
+        snapping: {
+          layers: []
+        },
+        snapping: {
+          layers: [snapping],
+          sensitivity: 15,
+          vertexonly: false
+        }
+      });
+      map.addControl(routing);
+      routing.draw()
+
+    </script>
+
+    <!-- CSS GitHub ribbon by Simon Whitaker https://github.com/simonwhitaker/github-fork-ribbon-css -->
+    <div class="github-fork-ribbon-wrapper left-bottom">
+      <div class="github-fork-ribbon">
+        <a href="https://github.com/Turistforeningen/leaflet-routing">Fork me on GitHub</a>
+      </div>
+    </div>
+
+
+  </body>
+
+</html>

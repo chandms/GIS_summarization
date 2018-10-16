@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<styleUrl>#1</styleUrl>
+<description><![CDATA[Hall 3, Tagore Hall of Residence]]></description>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.28884441061405,23.544923602690005,0.0 87.28968481237712,23.545156773035075,0.0 87.28916443499747,23.545446855685043,0.0 87.28888677135865,23.54560925153544,0.0 87.28848136671945,23.545529113118747,0.0 87.28833268108906,23.545191169879487,0.0 87.28884441061405,23.544923602690005,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<ExtendedData>
+<Data name="Time Stamp"><value>20181005161710</value></Data>
+<Data name="Destination"><value>defaultMcs</value></Data>
+<Data name="Group Type"><value>data</value></Data>
+<Data name="Lat Long"><value>23.54869744_87.28948991</value></Data>
+<Data name="Group ID"><value>1</value></Data>
+<Data name="Source"><value>7318831572</value></Data>
+<Data name="KML Type"><value>Polygon</value></Data>
+<Data name="Media Type"><value>TXT</value></Data>
+<Data name="Zoom"><value>16.57476706434244</value></Data>
+<Data name="Priority"><value>50</value></Data>
+</ExtendedData>
+<Style id='1'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+</Document>
+</kml>

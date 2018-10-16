@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<styleUrl>#1</styleUrl>
+<description><![CDATA[Hall 2, JC Bose Hall of Residence]]></description>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.28846020345873,23.54716340116771,0.0 87.28899612764928,23.547296292616096,0.0 87.28900389620435,23.547534212360063,0.0 87.28926814161468,23.547967827539296,0.0 87.28906408613693,23.54828770858812,0.0 87.28840084668593,23.548009870448922,0.0 87.28816217196504,23.547384303641522,0.0 87.28846020345873,23.54716340116771,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<ExtendedData>
+<Data name="Time Stamp"><value>20181005161747</value></Data>
+<Data name="Destination"><value>defaultMcs</value></Data>
+<Data name="Group Type"><value>data</value></Data>
+<Data name="Lat Long"><value>23.54869752_87.28948972</value></Data>
+<Data name="Group ID"><value>1</value></Data>
+<Data name="Source"><value>7318831572</value></Data>
+<Data name="KML Type"><value>Polygon</value></Data>
+<Data name="Media Type"><value>TXT</value></Data>
+<Data name="Zoom"><value>16.815954841607624</value></Data>
+<Data name="Priority"><value>50</value></Data>
+</ExtendedData>
+<Style id='1'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+</Document>
+</kml>

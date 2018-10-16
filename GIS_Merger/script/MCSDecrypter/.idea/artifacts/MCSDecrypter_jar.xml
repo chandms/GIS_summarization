@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="MCSDecrypter:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MCSDecrypter_jar</output-path>
+    <root id="root">
+      <element id="archive" name="MCSDecrypter.jar">
+        <element id="module-output" name="MCSDecrypter" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/bcprov-jdk15on-1.59.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/bcpg-jdk15on-1.59.jar" />
+      <element id="library" level="project" name="commons-io-2.6" />
+    </root>
+  </artifact>
+</component>

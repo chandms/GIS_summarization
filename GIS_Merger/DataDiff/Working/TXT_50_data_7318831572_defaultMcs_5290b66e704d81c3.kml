@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<styleUrl>#1</styleUrl>
+<description><![CDATA[Biotech Department]]></description>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29170230121042,23.54900094045486,0.0 87.29206746355862,23.54897863295045,0.0 87.29206499157146,23.548700784794562,0.0 87.29170118056845,23.5487430542329,0.0 87.29170230121042,23.54900094045486,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<ExtendedData>
+<Data name="Time Stamp"><value>20181005160237</value></Data>
+<Data name="Destination"><value>defaultMcs</value></Data>
+<Data name="Group Type"><value>data</value></Data>
+<Data name="Lat Long"><value>23.54867321_87.28950427</value></Data>
+<Data name="Group ID"><value>1</value></Data>
+<Data name="Source"><value>7318831572</value></Data>
+<Data name="KML Type"><value>Polygon</value></Data>
+<Data name="Media Type"><value>TXT</value></Data>
+<Data name="Zoom"><value>17.092525790639904</value></Data>
+<Data name="Priority"><value>50</value></Data>
+</ExtendedData>
+<Style id='1'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+</Document>
+</kml>

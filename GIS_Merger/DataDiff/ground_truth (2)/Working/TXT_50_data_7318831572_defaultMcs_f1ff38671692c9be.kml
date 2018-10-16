@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<styleUrl>#1</styleUrl>
+<description><![CDATA[Hall 12, foreigners Hostel]]></description>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.28884306694852,23.546168590835265,0.0 87.28975712310978,23.545644352464535,0.0 87.28999039068663,23.545952492163224,0.0 87.28903382531394,23.546441514465783,0.0 87.28884306694852,23.546168590835265,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<ExtendedData>
+<Data name="Time Stamp"><value>20181005161448</value></Data>
+<Data name="Destination"><value>defaultMcs</value></Data>
+<Data name="Group Type"><value>data</value></Data>
+<Data name="Lat Long"><value>23.54869679_87.28949029</value></Data>
+<Data name="Group ID"><value>1</value></Data>
+<Data name="Source"><value>7318831572</value></Data>
+<Data name="KML Type"><value>Polygon</value></Data>
+<Data name="Media Type"><value>TXT</value></Data>
+<Data name="Zoom"><value>16.902763126190504</value></Data>
+<Data name="Priority"><value>50</value></Data>
+</ExtendedData>
+<Style id='1'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+</Document>
+</kml>

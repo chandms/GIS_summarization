@@ -1,0 +1,13 @@
+[Unit]
+Description=merge service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/jvm/java-8-oracle/bin/java -jar GIS_SUMMARISATION.jar /home/up2/Test_15/fold/
+WorkingDirectory=/home/up2/Test_15/
+Restart=on-abort
+User=up2
+
+[Install]
+WantedBy=multi-user.target

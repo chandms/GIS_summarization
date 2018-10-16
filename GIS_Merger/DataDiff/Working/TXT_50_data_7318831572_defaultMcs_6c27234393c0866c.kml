@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<description><![CDATA[Canera bank]]></description>
+<Point>
+<coordinates>87.29232407980953,23.547057910079005,0.0 </coordinates>
+</Point>
+</Placemark>
+<ExtendedData>
+<Data name="Time Stamp"><value>20181005162501</value></Data>
+<Data name="Destination"><value>defaultMcs</value></Data>
+<Data name="Group Type"><value>data</value></Data>
+<Data name="Lat Long"><value>23.54869089_87.28946983</value></Data>
+<Data name="Group ID"><value>1</value></Data>
+<Data name="Source"><value>7318831572</value></Data>
+<Data name="KML Type"><value>Point</value></Data>
+<Data name="Media Type"><value>TXT</value></Data>
+<Data name="Zoom"><value>17.947642269762085</value></Data>
+<Data name="Priority"><value>50</value></Data>
+</ExtendedData>
+</Document>
+</kml>
