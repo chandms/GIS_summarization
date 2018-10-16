@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>
+<Document>
+<Placemark>
+<styleUrl>#1</styleUrl>
+<name>752c27c0bfc64c7a</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29263967724972,23.54711101119564,0.0 87.29284989244388,23.546993243325744,0.0 87.29329951938684,23.547551301501954,0.0 87.29307470591533,23.54768914284496,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#2</styleUrl>
+<name>4f0837879ac09093</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29230493498477,23.54714634508308,0.0 87.29249778099256,23.547463253630085,0.0 87.29265205779882,23.54738468133428,0.0 87.2924263565452,23.54709003480677,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<styleUrl>#3</styleUrl>
+<name>424822ba707180f3</name>
+<Polygon>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>87.29089909081011,23.549209801635755,0.0 87.29213352245927,23.549260471393183,0.0 87.29214457707104,23.54801398969134,0.0 87.29102437641035,23.547949807386786,0.0 </coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<ExtendedData>
+<Data name="20180825210409"><value>20180825210428-map-752c27c0bfc64c7a-2bd51ce6f208e48249162ee88a221710_7000000001_volunteer_50_68f80f80aa0a945a.png-23.54703832_87.29249925</value></Data>
+<Data name="20180825210443"><value>20180825210511-map-4f0837879ac09093-2bd51ce6f208e48249162ee88a221710_7000000001_volunteer_50_16ddbea1cfd34169.png-23.54703832_87.29249925</value></Data>
+<Data name="20180825210511"><value>20180825210515-text-none-Maths Department-23.54703832_87.29249925</value></Data>
+<Data name="source"><value>20180825210352-text-none-This is Aman braodcasting....it&apos;s a emergency-23.54703832_87.29249925</value></Data>
+<Data name="total"><value>10</value></Data>
+<Data name="20180825210428"><value>20180825210443-text-none-New Administrive Building-23.54703832_87.29249925</value></Data>
+<Data name="20180825210626"><value>20180825210635-text-none-There&apos;s a flood ...we all are dying-23.54703832_87.29249925</value></Data>
+<Data name="20180825210528"><value>20180825210611-map-424822ba707180f3-2bd51ce6f208e48249162ee88a221710_7000000001_volunteer_50_2ec710f312b93277.png-23.54703832_87.29249925</value></Data>
+<Data name="20180825210515"><value>20180825210528-image-none-2bd51ce6f208e48249162ee88a221710_7000000001_volunteer_50_3b72cf163e67f10d.jpeg-23.54703832_87.29249925</value></Data>
+<Data name="20180825210611"><value>20180825210626-text-none-New Academic Building.....-23.54703832_87.29249925</value></Data>
+<Data name="20180825210352"><value>20180825210409-image-none-2bd51ce6f208e48249162ee88a221710_7000000001_volunteer_50_89adc390c4de1680.jpeg-23.54703832_87.29249925</value></Data>
+</ExtendedData>
+<Style id='1'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='2'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+<Style id='3'>
+<LineStyle>
+<color>FF000000</color>
+<width>10.0</width>
+</LineStyle>
+<PolyStyle>
+<color>00000000</color>
+</PolyStyle>
+</Style>
+</Document>
+</kml>
