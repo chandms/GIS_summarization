@@ -608,7 +608,7 @@ public class later {
                             //System.out.println("obtained KML objects  ");
                             MergingDecisionPolicy mergingDecisionPolicy = new MergingDecisionPolicy(MergingDecisionPolicy.DISTANCE_THRESHOLD_POLICY
                                     , 40, 0);
-                            GISMerger.mergeGIS(mergingDecisionPolicy, kmlObjects, map, directory,videoArrayList,imageArrayList,audioArrayList,textArrayList,version);
+                            GISMerger.mergeGIS(mergingDecisionPolicy, kmlObjects, map, directory,videoArrayList,imageArrayList,audioArrayList,textArrayList,version,"box");
 
 
                         }

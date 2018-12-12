@@ -23,6 +23,7 @@ public class influx {
     public static final String IMAGE = "image";
     public static final String VIDEO = "video";
     public static final String AUDIO = "audio";
+    public static String box_name = "Default";
 
     public static Integer version=-1;
 
@@ -44,6 +45,7 @@ public class influx {
             return;
         }
         directory = args[0];
+        box_name = args[1];
 
 
 //        String msg="";
@@ -204,14 +206,14 @@ public class influx {
                                 kmlObjects.add(object);
                             }
                             Date date = new Date();
-                            File file = new File(directory + "date.txt");
+                            File file = new File(directory + box_name+"_"+"date.txt");
                             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
                             bufferedWriter.write(date + "%" + version + "\n");
                             bufferedWriter.close();
                             //System.out.println("obtained KML objects  ");
                             MergingDecisionPolicy mergingDecisionPolicy = new MergingDecisionPolicy(MergingDecisionPolicy.DISTANCE_THRESHOLD_POLICY
                                     , 40, 0);
-                            GISMerger.mergeGIS(mergingDecisionPolicy, kmlObjects, map, directory, videoArrayList, imageArrayList, audioArrayList, textArrayList, version);
+                            GISMerger.mergeGIS(mergingDecisionPolicy, kmlObjects, map, directory, videoArrayList, imageArrayList, audioArrayList, textArrayList, version,box_name);
 
 
                         }
@@ -225,7 +227,7 @@ public class influx {
             int val=0;
             long tt=0;
             try{
-            File merge_file = new File(directory + "merge_time.conf");
+            File merge_file = new File(directory +box_name+"_"+ "merge_time.conf");
             BufferedReader bufferedReader = new BufferedReader(new FileReader(merge_file));
             String text = bufferedReader.readLine();
             System.out.println(text);

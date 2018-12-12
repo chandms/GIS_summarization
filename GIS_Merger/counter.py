@@ -11,7 +11,7 @@ counter= {}
 information=defaultdict(list)
 
 myclient = InfluxDBClient('127.0.0.1', 8086, 'root', 'root', database='gis')
-
+print (base_dir)
 while (True):
 	try:
 		pgp = len(os.listdir(os.path.join(base_dir,"pgpKey")))
@@ -41,23 +41,28 @@ while (True):
 	try:
 		image=len(os.listdir(os.path.join(base_dir,"SurakshitImages")))
 		image_list = os.listdir(os.path.join(base_dir,"SurakshitImages"))
+		print(image_list,len(image_list))
 		for k in range(len(image_list)):
 			name = image_list[k].split('_')
+			print("1",name[1])
 			fg=0
 			if(name[1].isdigit()):
 				if(name[1] in contact_list):
 					fg=fg+1
 					information[name[1]][2]=information[name[1]][2]+1
+			print("2",name[1],fg)
 			if(fg==0):
-				y=0;
-				while(y<range(len(name[1]))):
+				y=0
+				while(y<(len(name[1]))):
 					if(name[1][y].isdigit()):
 						break
 					y +=1
+					print ("y ",y)
 				name[1]=name[1][y:]
 				if(name[1].isdigit()):
 					if(name[1] in contact_list):
 						information[name[1]][2]=information[name[1]][2]+1
+			print (name[1])
 		counter['image']=image
 	except:
 		counter['image']=0
@@ -74,7 +79,7 @@ while (True):
 					information[name[1]][0]=information[name[1]][0]+1
 			if(fg==0):
 				y=0;
-				while(y<range(len(name[1]))):
+				while(y<(len(name[1]))):
 					if(name[1][y].isdigit()):
 						break
 					y +=1
@@ -98,7 +103,7 @@ while (True):
 					information[name[1]][1]=information[name[1]][1]+1
 			if(fg==0):
 				y=0;
-				while(y<range(len(name[1]))):
+				while(y<(len(name[1]))):
 					if(name[1][y].isdigit()):
 						break
 					y +=1
@@ -123,7 +128,7 @@ while (True):
 					information[name[1]][3]=information[name[1]][3]+1
 			if(fg==0):
 				y=0;
-				while(y<range(len(name[1]))):
+				while(y<(len(name[1]))):
 					if(name[1][y].isdigit()):
 						break
 					y +=1
@@ -142,8 +147,8 @@ while (True):
 	#print(counter)
 	counter_string=json.dumps(counter)
 	info = json.dumps(information)
-	file = open("./fold/counter.json",'w')
-	nfile = open("./fold/personified.json",'w')
+	file = open("./fold/DB2_counter.json",'w')
+	nfile = open("./fold/DB2_personified.json",'w')
 
 	file.write(counter_string)
 	nfile.write(info)

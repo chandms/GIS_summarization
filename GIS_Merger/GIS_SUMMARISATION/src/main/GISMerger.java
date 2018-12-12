@@ -51,7 +51,7 @@ public class GISMerger {
 
 
     //return number of not merged files
-    public static void mergeGIS( MergingDecisionPolicy mergeDecisionPolicy,List<KmlObject> kmlObjects,HashMap<String,List<point>> mp,String d,ArrayList<Video> videoArrayList,ArrayList<Image> imageArrayList,ArrayList<Audio> audioArrayList,ArrayList<Text> textArrayList,int version) throws IOException {
+    public static void mergeGIS( MergingDecisionPolicy mergeDecisionPolicy,List<KmlObject> kmlObjects,HashMap<String,List<point>> mp,String d,ArrayList<Video> videoArrayList,ArrayList<Image> imageArrayList,ArrayList<Audio> audioArrayList,ArrayList<Text> textArrayList,int version,String box_name) throws IOException {
 
 
         System.out.println("Entered into Merger");
@@ -393,7 +393,7 @@ public class GISMerger {
         }
 
         System.out.println(msg);
-        file= new File(d+"merged.txt");
+        file= new File(d+box_name+"_"+"merged.txt");
         bufferedWriter = new BufferedWriter(new FileWriter(file,true));
         bufferedWriter.append(msg);
         bufferedWriter.close();
