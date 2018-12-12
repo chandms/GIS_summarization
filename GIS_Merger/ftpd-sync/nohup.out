@@ -1,0 +1,81 @@
+/usr/local/lib/python3.5/dist-packages/pyftpdlib/authorizers.py:244: RuntimeWarning: write permissions assigned to anonymous user.
+  RuntimeWarning)
+[I 2018-12-08 16:23:41] >>> starting FTP server on 0.0.0.0:8021, pid=1812 <<<
+[I 2018-12-08 16:23:41] concurrency model: async
+[I 2018-12-08 16:23:41] masquerade (NAT) address: None
+[I 2018-12-08 16:23:41] passive ports: None
+[I 2018-12-08 16:39:42] 192.168.0.5:57984-[] FTP session opened (connect)
+[I 2018-12-08 16:39:43] 192.168.0.5:57984-[user] USER 'user' logged in.
+[I 2018-12-08 16:40:00] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/MapDisarm_Log_9477633139_20181204180842.txt completed=1 bytes=162661 seconds=15.922
+[I 2018-12-08 16:40:41] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/MapDisarm_Log_9477633139_20181204203434.txt completed=1 bytes=238219 seconds=24.128
+[I 2018-12-08 16:41:06] 192.168.0.5:57984-[user] CWD /home/pi/lr_test2/fold/sync/SurakshitDiff 250
+[I 2018-12-08 16:41:10] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitDiff/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50_1.diff completed=1 bytes=170 seconds=0.145
+[I 2018-12-08 16:41:11] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitDiff/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50_2.diff completed=1 bytes=282 seconds=0.06
+[I 2018-12-08 16:41:12] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitDiff/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50_3.diff completed=1 bytes=375 seconds=0.157
+[I 2018-12-08 16:41:13] 192.168.0.5:57984-[user] CWD /home/pi/lr_test2/fold/sync/SurakshitKml 250
+[I 2018-12-08 16:41:14] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/11230fe9873a3d3d6b1082dae671d24b_v9674209814_volunteer_50.bgp completed=1 bytes=663 seconds=0.054
+[I 2018-12-08 16:41:16] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/144ff715cd4372bf65c62bd7fefb97e3_v8906974031_volunteer_50.bgp completed=1 bytes=511 seconds=0.041
+[I 2018-12-08 16:41:18] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50.bgp completed=1 bytes=663 seconds=0.142
+[I 2018-12-08 16:41:19] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/9d00aad89d6ec8198e15e0284923114_9000000002_user_50.bgp completed=1 bytes=814 seconds=0.138
+[I 2018-12-08 16:41:19] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/bb9d291a35ef3281f10738ce0c7e0b99_9674209814_user_50.bgp completed=1 bytes=676 seconds=0.041
+[I 2018-12-08 16:41:20] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/ccfc24a826458dcbb2ea742e3a4d7588_9000000003_user_50.bgp completed=1 bytes=835 seconds=0.089
+[I 2018-12-08 16:41:20] 192.168.0.5:57984-[user] CWD /home/pi/lr_test2/fold/sync/pgpKey 250
+[I 2018-12-08 16:41:22] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pri_manager.bgp completed=1 bytes=680 seconds=0.04
+[I 2018-12-08 16:41:22] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pri_user.bgp completed=1 bytes=683 seconds=0.076
+[I 2018-12-08 16:41:23] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pri_volunteer.bgp completed=1 bytes=682 seconds=0.04
+[I 2018-12-08 16:41:24] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_9432175397.bgp completed=1 bytes=313 seconds=0.041
+[I 2018-12-08 16:41:24] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_9477633139.bgp completed=1 bytes=313 seconds=0.04
+[I 2018-12-08 16:41:25] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_manager.bgp completed=1 bytes=310 seconds=0.057
+[I 2018-12-08 16:41:25] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_user.bgp completed=1 bytes=313 seconds=0.039
+[I 2018-12-08 16:41:28] 192.168.0.5:57984-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_volunteer.bgp completed=1 bytes=312 seconds=0.039
+[I 2018-12-08 16:41:28] 192.168.0.5:57984-[user] FTP session closed (disconnect).
+[I 2018-12-08 16:48:42] 192.168.0.5:58032-[] FTP session opened (connect)
+[I 2018-12-08 16:48:43] 192.168.0.5:58032-[user] USER 'user' logged in.
+[I 2018-12-08 16:49:04] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/MapDisarm_Log_9477633139_20181204180842.txt completed=1 bytes=162661 seconds=19.705
+[I 2018-12-08 16:49:52] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/MapDisarm_Log_9477633139_20181204203434.txt completed=1 bytes=238219 seconds=28.522
+[I 2018-12-08 16:50:23] 192.168.0.5:58032-[user] CWD /home/pi/lr_test2/fold/sync/SurakshitDiff 250
+[I 2018-12-08 16:50:25] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitDiff/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50_1.diff completed=1 bytes=170 seconds=0.04
+[I 2018-12-08 16:50:26] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitDiff/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50_2.diff completed=1 bytes=282 seconds=0.068
+[I 2018-12-08 16:50:27] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitDiff/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50_3.diff completed=1 bytes=375 seconds=0.06
+[I 2018-12-08 16:50:28] 192.168.0.5:58032-[user] CWD /home/pi/lr_test2/fold/sync/SurakshitKml 250
+[I 2018-12-08 16:50:29] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/11230fe9873a3d3d6b1082dae671d24b_v9674209814_volunteer_50.bgp completed=1 bytes=663 seconds=0.039
+[I 2018-12-08 16:50:30] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/144ff715cd4372bf65c62bd7fefb97e3_v8906974031_volunteer_50.bgp completed=1 bytes=511 seconds=0.084
+[I 2018-12-08 16:50:31] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50.bgp completed=1 bytes=663 seconds=0.059
+[I 2018-12-08 16:50:33] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/9d00aad89d6ec8198e15e0284923114_9000000002_user_50.bgp completed=1 bytes=814 seconds=0.039
+[I 2018-12-08 16:50:35] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/bb9d291a35ef3281f10738ce0c7e0b99_9674209814_user_50.bgp completed=1 bytes=676 seconds=0.085
+[I 2018-12-08 16:50:36] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/ccfc24a826458dcbb2ea742e3a4d7588_9000000003_user_50.bgp completed=1 bytes=835 seconds=0.097
+[I 2018-12-08 16:50:36] 192.168.0.5:58032-[user] CWD /home/pi/lr_test2/fold/sync/pgpKey 250
+[I 2018-12-08 16:50:38] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pri_manager.bgp completed=1 bytes=680 seconds=0.035
+[I 2018-12-08 16:50:39] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pri_user.bgp completed=1 bytes=683 seconds=0.035
+[I 2018-12-08 16:50:40] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pri_volunteer.bgp completed=1 bytes=682 seconds=0.037
+[I 2018-12-08 16:50:41] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_9432175397.bgp completed=1 bytes=313 seconds=0.037
+[I 2018-12-08 16:50:42] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_9477633139.bgp completed=1 bytes=313 seconds=0.038
+[I 2018-12-08 16:50:44] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_manager.bgp completed=1 bytes=310 seconds=0.036
+[I 2018-12-08 16:50:46] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_user.bgp completed=1 bytes=313 seconds=0.112
+[I 2018-12-08 16:50:46] 192.168.0.5:58032-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_volunteer.bgp completed=1 bytes=312 seconds=0.036
+[I 2018-12-08 16:50:46] 192.168.0.5:58032-[user] FTP session closed (disconnect).
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[] FTP session opened (connect)
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] USER 'user' logged in.
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/MapDisarm_Log_9477633139_20181204180842.txt completed=1 bytes=162661 seconds=0.001
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/MapDisarm_Log_9477633139_20181204203434.txt completed=1 bytes=238219 seconds=0.002
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] CWD /home/pi/lr_test2/fold/sync/SurakshitDiff 250
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitDiff/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50_1.diff completed=1 bytes=170 seconds=0.001
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitDiff/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50_2.diff completed=1 bytes=282 seconds=0.002
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitDiff/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50_3.diff completed=1 bytes=375 seconds=0.002
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] CWD /home/pi/lr_test2/fold/sync/SurakshitKml 250
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/11230fe9873a3d3d6b1082dae671d24b_v9674209814_volunteer_50.bgp completed=1 bytes=663 seconds=0.001
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/144ff715cd4372bf65c62bd7fefb97e3_v8906974031_volunteer_50.bgp completed=1 bytes=511 seconds=0.002
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/8e5cb25c4b0934768a15f61e661bd366_v9477633139_volunteer_50.bgp completed=1 bytes=663 seconds=0.001
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/9d00aad89d6ec8198e15e0284923114_9000000002_user_50.bgp completed=1 bytes=814 seconds=0.002
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/bb9d291a35ef3281f10738ce0c7e0b99_9674209814_user_50.bgp completed=1 bytes=676 seconds=0.001
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/SurakshitKml/ccfc24a826458dcbb2ea742e3a4d7588_9000000003_user_50.bgp completed=1 bytes=835 seconds=0.002
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] CWD /home/pi/lr_test2/fold/sync/pgpKey 250
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pri_manager.bgp completed=1 bytes=680 seconds=0.001
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pri_user.bgp completed=1 bytes=683 seconds=0.001
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pri_volunteer.bgp completed=1 bytes=682 seconds=0.001
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_9432175397.bgp completed=1 bytes=313 seconds=0.002
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_9477633139.bgp completed=1 bytes=313 seconds=0.002
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_manager.bgp completed=1 bytes=310 seconds=0.002
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_user.bgp completed=1 bytes=313 seconds=0.002
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] RETR /home/pi/lr_test2/fold/sync/pgpKey/pub_volunteer.bgp completed=1 bytes=312 seconds=0.002
+[I 2018-12-08 17:06:12] 192.168.0.10:34304-[user] FTP session closed (disconnect).
