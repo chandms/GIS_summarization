@@ -1,0 +1,13 @@
+[Unit]
+Description=merge service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/java -jar GIS_SUMMARISATION.jar /home/pi/lr_test2/fold/ DB2
+WorkingDirectory=/home/pi/lr_test2/
+Restart=on-abort
+User=pi
+
+[Install]
+WantedBy=multi-user.target

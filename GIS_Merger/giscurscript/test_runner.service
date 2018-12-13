@@ -1,0 +1,13 @@
+[Unit]
+Description=Runner Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 -u runner.py 
+WorkingDirectory=/home/pi/ftpd-sync/
+Restart=on-abort
+User=pi
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=Copier service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 -u copier.py
+WorkingDirectory=/home/pi/lr_test2/fold/
+Restart=on-abort
+User=pi
+
+[Install]
+WantedBy=multi-user.target

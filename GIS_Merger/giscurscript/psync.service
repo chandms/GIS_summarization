@@ -1,0 +1,14 @@
+
+[Unit]
+Description=pSync Service
+After=multi-user.target
+
+[Service]
+Type=idle
+User=pi
+WorkingDirectory=/home/pi/psn/psync-pc
+ExecStart=/usr/bin/java -jar /home/pi/psn/psync-pc/distributables/psync-pc-jar-with-dependencies.jar DB2 /home/pi/lr_test2/fold/ 3
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

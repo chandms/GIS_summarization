@@ -1,0 +1,13 @@
+Unit]
+Description=Diff Patcher Service
+After=multi-user.target
+
+[Service]
+Type=idle
+User=pi
+ExecStart=/usr/bin/java -jar DiffPatcher.jar /home/pi/lr_test2/fold/sync/SurakshitDiff/ /home/pi/lr_test2/PatchedKML/ /home/pi/lr_test2/kmlFiles/
+WorkingDirectory=/home/pi/lr_test2/script/
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

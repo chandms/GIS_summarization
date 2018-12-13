@@ -4,10 +4,10 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python3 -u counter.py /home/up2/Test_15/fold/sync/
-WorkingDirectory=/home/up2/Test_15/
+ExecStart=/usr/bin/python3 -u counter.py /home/pi/lr_test2/fold/sync/
+WorkingDirectory=/home/pi/lr_test2/
 Restart=on-abort
-User=up2
+User=pi
 
 [Install]
 WantedBy=multi-user.target
