@@ -17,27 +17,27 @@ a. Make a working Directory
 b. Clone this repository
   * Create folder "fold"
    
-        ** copy all the contents of leaflet in fold.
+         copy all the contents of leaflet in fold.
       
-        ** create a "sync" folder inside fold which is the destination of synced files by psync.
+         create a "sync" folder inside fold which is the destination of synced files by psync.
     
-  *Create folder "PatchedKML"
+  * Create folder "PatchedKML"
    
-  *Create folder "kmlFiles" and create another folder "tempDecrypt" inside kmlFiles
+  * Create folder "kmlFiles" and create another folder "tempDecrypt" inside kmlFiles
    
-  *Copy "script" folder
+  * Copy "script" folder
    
-  *Collect the Jar file from [Link](https://github.com/chandms/GIS_summarization/blob/master/GIS_Merger/GIS_SUMMARISATION/out/artifacts/CM_GIS_SUMMARISATION_jar/GIS_SUMMARISATION.jar).Store that jar in this current directory.(This is the Merger).
+  * Collect the Jar file from [Link](https://github.com/chandms/GIS_summarization/blob/master/GIS_Merger/GIS_SUMMARISATION/out/artifacts/CM_GIS_SUMMARISATION_jar/GIS_SUMMARISATION.jar).Store that jar in this current directory.(This is the Merger).
    
-   *copy Copier.py
+  * copy Copier.py
    
-   *copy counter.py
+  * copy counter.py
    
-   *copy workable.py (KML Parser which inserts data into kml measurement of gis database in influxdb)
+  * copy workable.py (KML Parser which inserts data into kml measurement of gis database in influxdb)
    
-   *copy "ftpd-sync" folder outside the current folder.
+  * copy "ftpd-sync" folder outside the current folder.
    
-      ** create "work" folder inside it.
+         create "work" folder inside it.
  3. Create another folder "psn" outside and store the psync jar and destination of sync folder(Created Directory/fold/sync/) is passed through arguments.
  
  
