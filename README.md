@@ -38,7 +38,7 @@ b. Clone this repository
   * copy "ftpd-sync" folder outside the current folder.
    
          create "work" folder inside it.
- 3. Create another folder "psn" outside and store the psync jar and destination of sync folder(Created Directory/fold/sync/) is passed through arguments.
+c. Create another folder "psn" outside and store the psync jar and destination of sync folder(Created Directory/fold/sync/) is passed through arguments.
  
  
  **Running Process**
