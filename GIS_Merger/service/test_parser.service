@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python3 -u workable.py /home/up2/Test_15/kmlFiles/
+ExecStart=/usr/bin/python3 -u workable.py /home/up2/Test_15/PatchedKML/
 WorkingDirectory=/home/up2/Test_15/
 Restart=on-abort
 User=up2
