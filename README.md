@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-1. [Link to psync] (https://github.com/ItsForkIT/psync-pc)
-2. [Link to Disarm-Automation-Scripts] (https://github.com/ItsForkIT/Disarm-Automation-Scripts)
+1. [Link to psync] (https://github.com/ItsForkIT/psync-pc "Title")
+2. [Link to Disarm-Automation-Scripts] (https://github.com/ItsForkIT/Disarm-Automation-Scripts "Title")
 3. Install influxdb, Create two Databases - gis and Merged and create measurements kml and memory respectively.
 
 Clone both of these (1 & 2) repositories in your local machine.
@@ -11,7 +11,9 @@ Clone both of these (1 & 2) repositories in your local machine.
 ## Steps to Run the Project
 
 **Folder Structure** 
+
 a. Make a working Directory
+
 b. Clone this repository
    * Create folder "fold"
       ** copy all the contents of leaflet in fold.
@@ -19,7 +21,7 @@ b. Clone this repository
    *Create folder "PatchedKML"
    *Create folder "kmlFiles" and create another folder "tempDecrypt" inside kmlFiles
    *Copy "script" folder
-   *Collect the Jar file from [Link] (https://github.com/chandms/GIS_summarization/blob/master/GIS_Merger/GIS_SUMMARISATION/out/artifacts/CM_GIS_SUMMARISATION_jar/GIS_SUMMARISATION.jar).
+   *Collect the Jar file from [Link] (https://github.com/chandms/GIS_summarization/blob/master/GIS_Merger/GIS_SUMMARISATION/out/artifacts/CM_GIS_SUMMARISATION_jar/GIS_SUMMARISATION.jar "Title").
      store that jar in this current directory.(This is the Merger)
    *copy Copier.py
    *copy counter.py
