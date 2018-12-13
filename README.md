@@ -27,7 +27,7 @@ b. Clone this repository
    
   * Copy "script" folder
    
-  * Collect the Jar file from [Link](https://github.com/chandms/GIS_summarization/blob/master/GIS_Merger/GIS_SUMMARISATION/out/artifacts/CM_GIS_SUMMARISATION_jar/GIS_SUMMARISATION.jar).Store that jar in this current directory.(This is the Merger).
+  * Collect the Jar file from [Link](https://github.com/chandms/GIS_summarization/blob/master/GIS_Merger/GIS_SUMMARISATION/out/artifacts/CM_GIS_SUMMARISATION_jar/GIS_SUMMARISATION.jar). Store that jar in this current directory.(This is the Merger).
    
   * copy Copier.py
    
