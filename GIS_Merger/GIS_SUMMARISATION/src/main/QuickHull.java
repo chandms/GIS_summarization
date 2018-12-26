@@ -16,7 +16,15 @@ public class QuickHull {
     public ArrayList<point> quickHull(List<point> points) {
         if (points.size() <= 3) {
             ArrayList<point> clonedList = new ArrayList<>();
-            clonedList.ensureCapacity(points.size());
+            for(int rc=0;rc<points.size();rc++)
+            {
+                clonedList.add(new point());
+            }
+//            clonedList.ensureCapacity(points.size());
+            System.out.println(points.size()+","+clonedList.size());
+            System.out.println("Galatai Found..........");
+            System.out.println(clonedList);
+            System.out.println(points);
             Collections.copy(clonedList, points);
             return clonedList;
         }

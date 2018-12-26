@@ -59,7 +59,7 @@ public class influx {
             for(QueryResult.Result result: qres.getResults())
             {
                 if(result.getSeries()!=null) {
-                    System.out.println("res "+result);
+//                    System.out.println("res "+result);
                     for (QueryResult.Series series : result.getSeries()) {
                         if(series!=null) {
                             for (List<Object> data : series.getValues()) {
@@ -107,7 +107,7 @@ public class influx {
                                     if (data.get(iii) == null)
                                         data.set(iii, "");
                                 }
-                                System.out.print(Arrays.toString(data.toArray()));
+//                                System.out.print(Arrays.toString(data.toArray()));
                                 if (!(data.get(3).equals("") || data.get(3).equals(IMAGE) ||
                                         data.get(3).equals(VIDEO) || data.get(3).equals(AUDIO))) {
                                     if (!map.containsKey((String) data.get(3)))
