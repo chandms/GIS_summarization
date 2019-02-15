@@ -305,8 +305,6 @@ function information()
     }
     if(contact_no!= "")
     {
-        console.log("amar nam Chandrika");
-        console.log("mujhko"+contact_map[contact_no]);
         res=contact_map[contact_no];
 
     }
@@ -478,42 +476,50 @@ function readTextFile(file,version)
 
                                 var pops="";
                                 var my_text="";
-                                var fgg=0;
+                                var txt=0,vd=0,im=0,ad=0;
+                                var my_vid=""
+                                var my_img=""
+                                var my_aud=""
                                 for(var jt=0;jt<media.length;jt++)
                                 {
-                                    if(media[jt].endsWith('.mp4'))
+                                    if(media[jt].endsWith('.3gp'))
                                     {
-                                        pops=pops+"video"+" = "+ "<video width='160' height='120' controls='controls' poster='back_ground.jpeg'> <source src='"+"./sync/SurakshitVideos/"+media[jt]+"' type='video/mp4'>Bummer, your  browser does not support the video tag.</video>";
-                                        //pops=pops+"video = "+ "<a target='_blank' href='viewer.html?file_name=" + media[jt] + "' >"  + media[jt] + "</a>";
-                                        pops=pops+"<br>";
+                                        ad++;
+                                        pops=pops+"<audio controls='controls' autoplay > <source src='"+"./sync/SurakshitAudio/"+media[jt]+"' type='audio/3gp'>Bummer, your  browser does not support the audio tag.</audio>";
+                                    }
+                                    else if(media[jt].endsWith('.mp4'))
+                                    {
+                                        if (ad>0)
+                                        {
+                                            pops=pops+"<br><br>";
+                                            ad=0
+                                        }
+                                        vd++;
+                                        pops=pops+ "<video width='160' height='120' controls='controls' poster='back_ground.jpeg'> <source src='"+"./sync/SurakshitVideos/"+media[jt]+"' type='video/mp4'>Bummer, your  browser does not support the video tag.</video>";
                                     }
                                     else if(media[jt].endsWith('.jpeg'))
                                     {
-                                        pops=pops+"image = "+ "<a target='_blank' href='viewer.html?file_name=" + media[jt] + "' >" + "<img src='"+"./sync/SurakshitImages/"+media[jt]+"'>"+ "</a>";
-                                        pops=pops+"<br>";
-                                    }
+                                        if (vd>0)
+                                        {
+                                            pops=pops+"<br><br>";
+                                            vd=0
+                                        }
+                                        im++;
+                                        pops=pops+"<a target='_blank' href='viewer.html?file_name=" + media[jt] + "' >" + "<img src='"+"./sync/SurakshitImages/"+media[jt]+"'>"+ "</a>";
+                                        //pops=pops+"<img src='"+"./sync/SurakshitImages/"+media[jt]+"'/>";
 
-                                    else if(media[jt].endsWith('.3gp'))
-                                    {
-                                        //pops=pops+"audio = "+ "<a target='_blank' href='viewer.html?file_name=" + media[jt] + "' >"  + media[jt] + "</a>";
-                                        pops=pops+"audio"+" = "+ "<audio controls='controls' autoplay > <source src='"+"./sync/SurakshitAudio/"+media[jt]+"' type='audio/3gp'>Bummer, your  browser does not support the audio tag.</audio>";
-                                        pops=pops+"<br>";
                                     }
                                     else
                                     {
-                                        fgg++;
+                                        txt++;
                                         my_text=my_text+media[jt]+"<br>";
                                     }
                                 }
-                                if(fgg!=0)
+                                if(txt!=0)
                                 {
-                                    pops=pops+'<a  target="_blank" href="textTab.html?text='+my_text+'">TEXT SUMMARY</a>';
+                                    pops=pops+"<br>"+'<a  target="_blank" href="textTab.html?text='+my_text+'">TEXT SUMMARY</a>'+"<br>";
                                 }
-                                console.log(maxLat,maxLon,minLat,minLon);
-                                console.log("centre", centLat, centLon);
-                                var mark = cord[0].split(' ');
-                                var media_plot = L.circle([mark[0],mark[1]],{color:'black',radius:2}).addTo(map);
-                                media_plot.bindPopup(pops);
+                                polygon.bindPopup(pops);
                             }
                         }
                         else if(word[1]>version)
@@ -523,7 +529,6 @@ function readTextFile(file,version)
 
                 for(kt in MyMap)
                 {
-                    console.log(MyMap[kt]);
                         
                     latlon=kt.split(',');
                     var plot = L.marker([latlon[0],latlon[1]]).addTo(map);
