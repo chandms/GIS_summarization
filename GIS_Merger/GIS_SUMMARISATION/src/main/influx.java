@@ -213,7 +213,7 @@ public class influx {
                             //System.out.println("obtained KML objects  ");
                             MergingDecisionPolicy mergingDecisionPolicy = new MergingDecisionPolicy(MergingDecisionPolicy.DISTANCE_THRESHOLD_POLICY
                                     , 40, 0);
-                            GISMerger.mergeGIS(mergingDecisionPolicy, kmlObjects, map, directory, videoArrayList, imageArrayList, audioArrayList, textArrayList, version,box_name);
+                            MyMerger.mergeGIS(mergingDecisionPolicy, kmlObjects, map, directory, videoArrayList, imageArrayList, audioArrayList, textArrayList, version,box_name);
 
 
                         }
