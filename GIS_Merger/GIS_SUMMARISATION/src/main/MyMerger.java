@@ -55,7 +55,7 @@ public class MyMerger {
     public static void mergeGIS( MergingDecisionPolicy mergeDecisionPolicy,List<KmlObject> kmlObjects,HashMap<String,List<point>> mp,String d,ArrayList<Video> videoArrayList,ArrayList<Image> imageArrayList,ArrayList<Audio> audioArrayList,ArrayList<Text> textArrayList,int version,String box_name) throws IOException {
 
 
-        ArrayList<HashMap<String,String>> mergedContent = new ArrayList<>();
+        ArrayList<HashMap<String,Object>> mergedContent = new ArrayList<>();
 
         System.out.println("Entered into Merger");
 
@@ -168,7 +168,7 @@ public class MyMerger {
             Map <KmlObject,ArrayList<String>> cluster= new HashMap<>();
             for (KmlObject object:mergedBucket){
 
-                HashMap<String,String> tempDir = new HashMap<>();
+                HashMap<String,Object> tempDir = new HashMap<>();
 
                 for(Video video : videoArrayList)
                 {
@@ -216,15 +216,17 @@ public class MyMerger {
                     }
                 }
                 String clusterString="";
+                ArrayList <String> clusterArray = new ArrayList<>();
                 if(cluster.get(object)!=null) {
                     for (int uj = 0; uj < cluster.get(object).size(); uj++) {
                         if(uj!=0)
                             clusterString = clusterString + "::" + cluster.get(object).get(uj);
                         else
                             clusterString = cluster.get(object).get(uj);
+                        clusterArray.add(cluster.get(object).get(uj));
                     }
                 }
-                tempDir.put("clusterString",clusterString);
+                tempDir.put("clusterString",clusterArray);
                 cl=0;
                 String mapName="",position="";
                 String curPoints ="";
@@ -285,7 +287,7 @@ public class MyMerger {
         {
             if(visit.get(video)==false)
             {
-                HashMap <String,String> tempDir = new HashMap<>();
+                HashMap <String,Object> tempDir = new HashMap<>();
                 Point point1 = Point.measurement("memory")
                         .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
                         .addField("map", "video")
@@ -310,7 +312,7 @@ public class MyMerger {
 //                msg=msg+"%"+Integer.toString(version)+"%"+"normal"+"%"+video.getName()+"%";
 //                msg=msg+"\n";
                 tempDir.put("coordinates","");
-                tempDir.put("clusterString","");
+                tempDir.put("clusterString",new ArrayList<>());
                 tempDir.put("position",video.getLatitude()+","+video.getLongitude());
                 tempDir.put("version",Integer.toString(version));
                 tempDir.put("flag","normal");
@@ -323,7 +325,7 @@ public class MyMerger {
         {
             if(visit.get(audio)==false)
             {
-                HashMap <String,String> tempDir = new HashMap<>();
+                HashMap <String,Object> tempDir = new HashMap<>();
                 Point point1 = Point.measurement("memory")
                         .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
                         .addField("map", "audio")
@@ -348,7 +350,7 @@ public class MyMerger {
 //                msg=msg+"%"+Integer.toString(version)+"%"+"normal"+"%"+audio.getName()+"%";
 //                msg=msg+"\n";
                 tempDir.put("coordinates","");
-                tempDir.put("clusterString","");
+                tempDir.put("clusterString",new ArrayList<>());
                 tempDir.put("position",audio.getLatitude()+","+audio.getLongitude());
                 tempDir.put("version",Integer.toString(version));
                 tempDir.put("flag","normal");
@@ -362,7 +364,7 @@ public class MyMerger {
         {
             if(visit.get(image)==false)
             {
-                HashMap<String,String> tempDir = new HashMap<>();
+                HashMap<String,Object> tempDir = new HashMap<>();
                 Point point1 = Point.measurement("memory")
                         .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
                         .addField("map", "image")
@@ -387,7 +389,7 @@ public class MyMerger {
 //                msg=msg+"%"+Integer.toString(version)+"%"+"normal"+"%"+image.getName()+"%";
 //                msg=msg+"\n";
                 tempDir.put("coordinates","");
-                tempDir.put("clusterString","");
+                tempDir.put("clusterString",new ArrayList<>());
                 tempDir.put("position",image.getLatitude()+","+image.getLongitude());
                 tempDir.put("version",Integer.toString(version));
                 tempDir.put("flag","normal");
@@ -401,7 +403,7 @@ public class MyMerger {
         {
             if(visit.get(text)==false)
             {
-                HashMap <String,String> tempDir = new HashMap<>();
+                HashMap <String,Object> tempDir = new HashMap<>();
                 Point point1 = Point.measurement("memory")
                         .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
                         .addField("map", "text")
@@ -426,7 +428,7 @@ public class MyMerger {
 //                msg=msg+"%"+Integer.toString(version)+"%"+"normal"+"%"+text.getName()+"%";
 //                msg=msg+"\n";
                 tempDir.put("coordinates","");
-                tempDir.put("clusterString","");
+                tempDir.put("clusterString",new ArrayList<>());
                 tempDir.put("position",text.getLatitude()+","+text.getLongitude());
                 tempDir.put("version",Integer.toString(version));
                 tempDir.put("flag","normal");
@@ -438,7 +440,7 @@ public class MyMerger {
 
 //        System.out.println(msg);
         ArrayList<jsonObject> myjson = new ArrayList<>();
-        for (HashMap<String,String> cont : mergedContent)
+        for (HashMap<String,Object> cont : mergedContent)
         {
             ObjectMapper objectMapper = new ObjectMapper();
             jsonObject jsonObject = new jsonObject(cont);
@@ -449,7 +451,7 @@ public class MyMerger {
         String jst = objectMapper.writeValueAsString(ujs);
         file= new File(d+box_name+"_"+"merged.json");
         bufferedWriter = new BufferedWriter(new FileWriter(file,true));
-        bufferedWriter.append(jst);
+        bufferedWriter.append(jst+"\n");
         bufferedWriter.close();
 
 
