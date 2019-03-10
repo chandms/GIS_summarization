@@ -214,6 +214,8 @@ public class influx {
                             MergingDecisionPolicy mergingDecisionPolicy = new MergingDecisionPolicy(MergingDecisionPolicy.DISTANCE_THRESHOLD_POLICY
                                     , 40, 0);
                             MyMerger.mergeGIS(mergingDecisionPolicy, kmlObjects, map, directory, videoArrayList, imageArrayList, audioArrayList, textArrayList, version,box_name);
+//                            GISMerger.mergeGIS(mergingDecisionPolicy, kmlObjects, map, directory, videoArrayList, imageArrayList, audioArrayList, textArrayList, version,box_name);
+
 
 
                         }
