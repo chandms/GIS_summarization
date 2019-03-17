@@ -6,8 +6,8 @@ body {
 
 
 .Summary_Person{
-    height:54px;
-    display: block;
+    /*height:54px;*/
+    /*display: block;*/
     margin-top:200px;
 
 }
@@ -34,6 +34,7 @@ body {
 .id2 {
   width: 25%;
 }
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -51,6 +52,16 @@ body {
     color: #e1e1e1;
     border: 1px solid #e1e1e1;
     padding: 1em;
+}
+.media_distribution{
+
+    display: flex;
+    background: #1a1a1a;
+    color: #e1e1e1;
+    border: 1px solid #e1e1e1;
+    padding: 1em;
+
+
 }
 
 .dropbtn {

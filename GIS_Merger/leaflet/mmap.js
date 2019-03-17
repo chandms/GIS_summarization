@@ -30,6 +30,258 @@ var contact_list =[];
 contact_map = new Map();
 
 
+function readSmooth(file1,clus,version)
+{
+    console.log("smooth");
+    var rawFile1 = new XMLHttpRequest();
+    rawFile1.open("GET", file1, false);
+    rawFile1.onreadystatechange = function ()
+    {
+        if(rawFile1.readyState === 4)
+        {
+            if(rawFile1.status === 200 || rawFile1.status == 0)
+            {
+                var sm_txt = rawFile1.responseText;
+                var sm_lines = sm_txt.split('\n');
+                var counter=0;
+                sm_str="";
+                var col_count=0;
+                //var col="#8B0000"
+                for(var j = 0;j < sm_lines.length;j++){
+                    sm_word=sm_lines[j].split('%');
+                    if(sm_word.length==1)
+                    {
+                        counter++;
+                    }
+                    if(counter==version)
+                    {
+                        if(sm_word.length!=1)
+                        {
+                            
+                            var c=clus.toString();
+                            //console.log("sm_word= ",sm_word);
+                            var col_int=parseInt(sm_word[1]);
+                            //console.log("sm_word= ",col_int);
+                            if(sm_word[2]==c || sm_word[2]==c+"\r"){
+                                //console.log(sm_word[0],sm_word[1]);
+                                if(col_int>150){
+                                    clus_col="#8B0000";
+                                    col_count=3;
+                                }
+                                if(col_int<150 && col_int>100 && col_count<3){
+                                    clus_col="#FFA500";
+                                    col_count=2;
+                                }
+                                if(col_int<100 && col_count<2){
+                                    clus_col="#32CD32";
+                                    col_count=1;
+                                }
+                                sm_str=sm_str+"<dt>"+sm_word[0]+" "+sm_word[1]+"<dt>";
+                                //console.log(sm_str)
+                            }
+                        }
+                    }
+                }
+                //console.log(sm_str)
+               //alert(sm_str);
+            }
+        }
+    }
+    rawFile1.send(null)
+    return sm_str;
+}
+function readReport(file1,clus,version)
+{
+    console.log('report')
+    var rawFile1 = new XMLHttpRequest();
+    rawFile1.open("GET", file1, false);
+    rawFile1.onreadystatechange = function ()
+    {
+        if(rawFile1.readyState === 4)
+        {
+            if(rawFile1.status === 200 || rawFile1.status == 0)
+            {
+                var rep_txt = rawFile1.responseText;
+                var rep_lines = rep_txt.split('\n');
+                var counter=0;
+                rep_str="";
+                for(var j = 0;j < rep_lines.length;j++){
+                    rep_word=rep_lines[j].split('%');
+                    if(rep_word.length==1)
+                    {
+                        counter++;
+                    }
+                    if(counter==version)
+                    {
+                        if(rep_word.length!=1)
+                        {
+                            
+                            var c=clus.toString();
+                            //console.log("rep_word= ",rep_word);
+                            //console.log("clus= ",c);
+                            if(rep_word[1]==c || rep_word[1]==c+"\r"){
+                                //console.log(rep_word[0],rep_word[1]);
+                                rep_str=rep_str+"<dt>"+rep_word[0]+"<dt>";
+                                //console.log(rep_str)
+                            }
+                        }
+                    }
+                }
+                //console.log(rep_str)
+               //alert(rep_str);
+            }
+        }
+    }
+    rawFile1.send(null)
+    return rep_str;
+}
+function getTextCount(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    var val=0;
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var lines = allText.split('\n');
+                var len=lines.length;
+                console.log("length "+len);
+                len--;
+                for(var j=0; j<len;j++){
+                    console.log("updating "+val);
+                    var x=lines[j].split('%');
+                    if(x.length==1)
+                    {
+                        console.log(lines[j]);
+                        val++;
+                    }
+                }
+                //var x=lines[len-1].split('%');
+                //val=parseInt(x[6]);
+                                
+            }
+        }
+    }
+    rawFile.send(null); 
+    console.log("my val "+val);
+    return val;
+}
+
+function getClusterTime(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    var val=[];
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var lines = allText.split('\n');
+                for(var j=0;j<lines.length;j++)
+                {
+                    var word = lines[j].split('%');
+                    if(word.length==1)
+                    {
+                        val.push(word[0]);
+                    }
+                }
+                
+            }
+        }
+    }
+    rawFile.send(null); 
+    return val;
+}
+var clus_col=""
+function readClusterMap(file,version)
+{
+    console.log("Cluster map "+file);
+    // version++;
+    //console.log("got = ",version);
+    console.log("vers "+version);
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    clearMap();
+    var MyMap = new Map();
+    var counter=0;
+    var popup_str="";
+    var sm=""
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var lines = allText.split('\n');
+                var op=0.5;
+                //var col=getRandomColor();
+                var clus=1
+                for(var j=0;j<lines.length;j++)
+                {
+                    var word = lines[j].split('%');
+                    if(word.length==1)
+                    {
+                        counter++;
+                    }
+                    if(counter==version)
+                    {
+                        if(word.length!=1)
+                        {
+                            
+                            
+                            //console.log("Selected word",word[5]);
+                            //data.push(word);
+                            var er=word[3];
+                            //console.log("word[3]= ",word[3]);
+                            if(word[3]==50){
+                                //console.log("clus= ",clus);
+                                sm=readSmooth("smooth.txt",clus,version);
+                                er="500";
+                                op=0.5;
+                                //console.log("colour",clus_col)
+                                rep=readReport("report.txt",clus,version);
+                                popup_str="<dt>" +word[5]+" "+word[2]+ "</dt>"+"<dt>"+"================="+"<dt>"+"<dt>"+sm+"<dt>"+"<dt>"+"===================="+"<dt>"+rep+"<dt>";
+                                //clus_col="#8B0000"
+                            }
+                            else{
+                                popup_str="<dt>" +word[5]+" "+word[2]+ "</dt>";
+                                clus_col="#000000";
+                                er="15";
+                                op=0.7;
+                            }
+                            var circle = L.circle([word[0],word[1]], {
+                                color: clus_col,
+                                fillColor: clus_col,
+                                fillOpacity: op,
+                                radius: er
+                            }).addTo(map);
+                            circle.bindPopup(popup_str,{maxWidth:560});
+                            if(parseInt(word[3])==50){
+                                //col=getRandomColor();
+                                clus++;
+                            }
+                        }
+                    }
+                    
+                        
+                }
+                //console.log("popup_str",popup_str);
+                clus=1;
+                
+                
+            }
+        }
+    }
+    rawFile.send(null); 
+}
 
 try{
 readCounter("counter.json","personified.json");
@@ -38,12 +290,7 @@ catch(err){
     console.log("counter file "+err);
 }
 
-try{
-readCluster("clustermap.geojson");
-}
-catch(err){
-    console.log("cluester file" + err);
-}
+
 
 
 
@@ -225,9 +472,62 @@ function readContact(file)
     return res;
 }
 
+function getContactArray(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    var res=[];
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var obj = JSON.parse(allText);
+                for (var key in obj)
+                {
+                    res.push(key);
+                }
+            }
+        }
+    }
+    rawFile.send(null);
+    return res; 
+}
 
+function readSummaryPerson(file,mobileno)
+{
 
+    var rawFile = new XMLHttpRequest();
+   
+    rawFile.open("GET", file, false); 
+    
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                //console.log("chandrika  "+allText);
+                
+                var obj = JSON.parse(allText);
+                //console.log(obj['video']);
+                console.log("mobile no "+mobileno);
+                document.getElementById('vid_count').textContent="Videos : "+obj[mobileno][0];
+                document.getElementById('img_count').textContent="Images : "+obj[mobileno][2];
+                document.getElementById('aud_count').textContent="Audios : "+obj[mobileno][1];
+                document.getElementById('map_count').textContent="Maps : "+obj[mobileno][3];
+               
+               
+               
+            }
+        }
+    }
+    rawFile.send(null);
 
+}
 
 
 
@@ -365,6 +665,15 @@ function readTextFile(file,version)
     rawFile.open("GET", file, false);
     clearMap();
     var MyMap = new Map();
+    var text_ver = getTextCount("clustermap.geojson");
+    console.log("text version "+text_ver+" "+version);
+    var pas_ind = -1;
+    if(text_ver<=version)
+        pas_ind = version;
+    else
+        pas_ind = text_ver;
+    console.log("Pass_ind "+pas_ind);
+    readClusterMap("clustermap.geojson",pas_ind);
     rawFile.onreadystatechange = function ()
     {
         if(rawFile.readyState === 4)
@@ -516,54 +825,7 @@ function readTextFile(file,version)
     }
     rawFile.send(null); 
 }
-function readCluster(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                var lines = allText.split('\n');
-                var col=getRandomColor();
-                for(var i = 0;i < lines.length;i++){
-                      if(lines[i]!="")
-                      {
-                      word= lines[i].split('%');
-                        var er=word[3];
-                        var op=0.5;
-                        if(word[3]>=50)
-                        {
-                           er=word[3]*2;
-                           op=0.1;
-                           
-                        }
-                        console.log(word[0],word[1],word[3]);
-                        var circle = L.circle([word[0],word[1]], {
-                            color: col,
-                            fillColor: col,
-                            fillOpacity: op,
-                            radius: er
-                        }).addTo(map);
-                        circle.bindPopup(word[2]);
-                        if(word[3]>=50)
-                        {
-                           col=getRandomColor();
-                           
-                        }
 
-                    }
-                      
-                    }
-               // alert(allText);
-            }
-        }
-    }
-    rawFile.send(null);
-}
 function onLocationFound(e) {
     var radius = e.accuracy / 2;
 

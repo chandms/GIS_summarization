@@ -43,6 +43,11 @@ function myFunc(version)
     readTextFile("DB1_merged.json",version);
 }
 
+function myFunc2(mobileno)
+{
+    readSummaryPerson("personified.json",mobileno);
+}
+
 // dropdown creation
 function countVersion()
 {
@@ -54,11 +59,53 @@ function countVersion()
     {
          var my_time = getTime("date.txt",j);
          $('<option onclick="myFunc('+j+')" value="'+ "Version"+j +'">' + my_time + '</option>').appendTo('#myDropdown');
-        res=res+"<a href=\"#\" onclick =\"myFunc("+j+")\" >Version"+j+"</a> <br>"
+        res=res+"<a href=\"#\" onclick =\"myFunc("+j+")\" >Version"+j+"</a> <br>";
     }
        
 }
 
+function contactDropDown()
+{
+  var contact_array = getContactArray("personified.json");
+  var no_of_contact = contact_array.length;
+  var res ="";
+  for (var j=0;j<no_of_contact;j++)
+  {
+      $('<option onclick="myFunc2('+contact_array[j]+')" value="'+ "Contact"+j +'">' + contact_array[j] + '</option>').appendTo('#perDropDown');
+      res=res+"<a href=\"#\" onclick =\"myFunc2("+contact_array[j]+")\" >Contact"+j+"</a> <br>";
+  }
+}
+
+function SetDefaultValue()
+{
+    document.getElementById('vid_count').textContent= "Videos : 0";
+    document.getElementById('img_count').textContent="Images : 0";
+    document.getElementById('aud_count').textContent="Audios : 0";
+    document.getElementById('map_count').textContent="Maps : 0";
+}
+function myFunc3(id)
+{
+	console.log("got id "+id);
+	id+=1;
+	readClusterMap("clustermap.geojson",id);
+}
+function textClusterVersion()
+{
+	 var count = getTextCount("clustermap.geojson");
+	console.log("No of options= ", count);
+    var res="",html="";
+	var my_time = getClusterTime("clustermap.geojson");
+    for(var j=0;j<count;j++)
+    {
+         $('<option onclick="myFunc3('+j+')" value="'+j +'">' + my_time[j] + '</option>').appendTo('#myDropdown2');
+         res=res+"<a href=\"#\" onclick =\"myFunc3("+j+")\" >Version"+j+"</a> <br>"
+    }
+    //console.log("result = ",res);
+}
+
+window.onload = function(){
+    SetDefaultValue();
+};
 
 
 
@@ -76,7 +123,8 @@ function countVersion()
             <div class="count" id="audioCount"></div>
             <div class="count" id="contactCount"></div>
             <div class="count" id="mapCount"></div>
-            <div class="count" id="textCount"></div>
+            <div class="count" id="textCount" onclick="textClusterVersion()"></div>
+            <div class="PDF"> <object data="test.pdf" type="application/pdf" width="750" height="600"><a href="test.pdf">Text_Summarization.pdf</a> </object> </div><br>
             <div id="container" style="width: 100%; height: 200px">
             <script>
                   anychart.onDocumentReady(function() {
@@ -101,9 +149,9 @@ function countVersion()
                   // display the chart in the container
                   chart.container('container');
                   // set legend position
-                    chart.legend().position("right");
-                    // set items layout
-                    chart.legend().itemsLayout("vertical");
+                  chart.legend().position("right");
+                  // set items layout
+                  chart.legend().itemsLayout("vertical");
 
                   chart.draw();
 
@@ -115,37 +163,25 @@ function countVersion()
             <button onclick="countVersion()" class="side dropbtn">Version</button>
             <select id="myDropdown" name="brand">
             <option value="none"></option>
+            </select><br><br>
+            <select id="myDropdown2" name="brand2">
+            <option value="none"></option>
             </select>
         </div> 
         <div class="Summary_Person">
-         ContactNo: <input type="text" id="myContactNo" value="0000000000">
-         <p>Search If You Have Any Contribution</p>
-         <button onclick="inf_display()">Try it</button>
-         <p>Summary per Person</p>
-         <p id = "display"></p>
-         <script>
-           function inf_display() {
-            // body...
-
-            var res=information();
-            var st="";
-            console.log("Res = "+res);
-            if(res != undefined)
-            {
-            var ll=res.split(' ',4);
-            st=st+"    Video = "+ll[0]+"<br>";
-            st=st+"    Audio = "+ll[1]+"<br>";
-            st=st+"    Image = "+ll[2]+"<br>";
-            st=st+"    Map = "+ll[3]+"<br>";
-            console.log("st = "+st);
-          }
-            document.getElementById("display").innerHTML = st;
-            
-
-          }
-          
-         </script>
-         </div>
+          <div style="margin-bottom: 30px;">
+            <button onclick="contactDropDown()" class="side dropbtn">Contact History</button>
+            <select id="perDropDown" name="some">
+            <option value="none"></option>
+            </select>
+          </div>
+          <div class="media_distribution" style="display: block;">
+            <div class="media_distribution" id="vid_count" ></div>
+            <div class="media_distribution" id="img_count" ></div>
+            <div class="media_distribution" id="aud_count" ></div>
+            <div class="media_distribution" id="map_count" ></div>
+          </div>
+        </div>
     <!-- GIS Description Input Modal -->
     <div id="descriptionInputModal" class="modal">
       <!-- Modal content -->

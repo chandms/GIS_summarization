@@ -1,0 +1,11 @@
+2018-12-20 12:12:48
+killed%162%1
+missing%47%1
+expired%54%1
+injured%136%1
+dead%59%1
+killed%92%2
+died%33%2
+dead%54%2
+injured%50%2
+missing%58%2
